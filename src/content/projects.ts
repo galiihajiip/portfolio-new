@@ -65,7 +65,7 @@ export const projects: Project[] = [
     category: "software",
     year: "2026",
     summary:
-      "The accounting application entry that won first place at the National Accounting Application Competition (KOIN) 2026.",
+      "The accounting application that won 1st place at the National Accounting Application Competition (KOIN) 2026, organised by Akuntansi Universitas Sebelas Maret.",
     status: "competition-entry",
     featured: true,
     relatedAchievements: ["koin-2026"],
@@ -80,7 +80,7 @@ export const projects: Project[] = [
     category: "software",
     year: "2026",
     summary:
-      "The web application that earned first runner-up in the National Web Development FIT Competition 2026.",
+      "The web application that earned 1st runner-up in the National Web Development FIT Competition 2026, organised by HMPTI UKSW.",
     status: "competition-entry",
     featured: true,
     relatedAchievements: ["fit-2026"],
@@ -107,15 +107,16 @@ export const projects: Project[] = [
   {
     id: "pibiti-2026-final-project",
     slug: "pibiti-2026-final-project",
-    title: "PIBITI 2026 Final Project",
+    title: "PIBITI 2026 Web Development Final Project",
     titleNote: "Project title to be confirmed",
-    category: "research",
+    category: "software",
     year: "2026",
-    summary: "The final project that received the Best Final Project award (first winner) at PIBITI 2026.",
+    summary:
+      "The web development final project that won Best Final Project (1st Winner) at PIBITI 2026, the IT training programme of Himpunan Mahasiswa Informatika UPN “Veteran” Jawa Timur.",
     status: "competition-entry",
     relatedAchievements: ["pibiti-2026"],
     draft: true,
-    todo: ["Project title, research question, and methods", "Programme full name and organiser", "Your role and team"],
+    todo: ["Project title and what it does", "Stack and your role", "Screenshots or live link"],
   },
   {
     id: "cvd-training",
