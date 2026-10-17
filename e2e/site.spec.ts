@@ -155,7 +155,7 @@ test.describe("navigation and routes", () => {
   });
 
   test("inner pages have no horizontal overflow", async ({ page }) => {
-    for (const path of ["/projects", "/projects/cogniflip", "/research", "/research/pibiti-2026"]) {
+    for (const path of ["/projects", "/projects/cogniflip", "/research", "/research/aspire-2026"]) {
       await page.goto(path);
       await noHorizontalOverflow(page);
     }
