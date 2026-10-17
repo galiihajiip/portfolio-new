@@ -1,12 +1,12 @@
-import { ArrowUpRight, Award, GraduationCap, Medal, Trophy } from "lucide-react";
+import { ArrowUpRight, Award, Flag, GraduationCap, Medal, Trophy } from "lucide-react";
 import Link from "next/link";
 import { DraftNote } from "@/components/ui/DraftNote";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { achievementCategoryLabels, achievements } from "@/content/achievements";
+import { achievementCategoryLabels, achievements, achievementsByYear } from "@/content/achievements";
 import { chapters } from "@/content/stories";
 import type { Achievement } from "@/types/portfolio";
 
-const icons = { competition: Trophy, scholarship: GraduationCap, programme: Medal, recognition: Award };
+const icons = { competition: Trophy, scholarship: GraduationCap, programme: Medal, recognition: Award, delegation: Flag };
 
 function FeaturedAchievement({ a }: { a: Achievement }) {
   const Icon = icons[a.category];
@@ -58,28 +58,36 @@ export function AchievementSection() {
         </ul>
 
         <div className="mt-16">
-          <h3 className="label mb-4 text-mustard">Full milestone log</h3>
-          <ol className="divide-y-2 divide-cream/15 border-y-2 border-cream/15">
-            {achievements.map((a) => {
-              const Icon = icons[a.category];
-              return (
-                <li key={a.id} className="grid grid-cols-[auto_1fr] items-start gap-x-4 gap-y-1 py-5 md:grid-cols-[auto_1fr_12rem_6rem] md:items-center">
-                  <span className="grid size-10 place-items-center rounded-lg border-2 border-cream/40 text-mustard" aria-hidden>
-                    <Icon className="size-5" />
-                  </span>
-                  <div>
-                    <p className="font-display text-lg font-semibold leading-snug">{a.title}</p>
-                    <p className="text-sm text-cream/65">
-                      {achievementCategoryLabels[a.category]}
-                      {a.organiser && ` · ${a.organiser}`}
-                    </p>
-                  </div>
-                  <p className="col-start-2 font-semibold text-mustard md:col-start-auto">{a.result}</p>
-                  <p className="col-start-2 font-mono text-sm text-cream/65 md:col-start-auto md:text-right">{a.date ?? "—"}</p>
-                </li>
-              );
-            })}
-          </ol>
+          <h3 className="label mb-2 text-mustard">Full milestone log · {achievements.length} entries</h3>
+          {achievementsByYear().map(([year, items]) => (
+            <section key={year} aria-labelledby={`ach-${year}`} className="mt-8">
+              <h4 id={`ach-${year}`} className="flex items-center gap-3 font-display text-2xl font-bold text-cream">
+                {year}
+                <span className="font-mono text-xs font-normal text-cream/60">{items.length}</span>
+              </h4>
+              <ol className="mt-3 grid gap-x-10 border-t-2 border-cream/15 lg:grid-cols-2">
+                {items.map((a) => {
+                  const Icon = icons[a.category];
+                  return (
+                    <li key={a.id} className="grid grid-cols-[auto_1fr] items-start gap-x-4 border-b-2 border-cream/15 py-4">
+                      <span className="grid size-9 place-items-center rounded-lg border-2 border-cream/40 text-mustard" aria-hidden>
+                        <Icon className="size-4" />
+                      </span>
+                      <div className="min-w-0">
+                        <p className="font-semibold text-mustard">{a.result}</p>
+                        <p className="font-display leading-snug">{a.title}</p>
+                        <p className="text-sm text-cream/65">
+                          {achievementCategoryLabels[a.category]}
+                          {a.organiser && ` · ${a.organiser}`}
+                          {a.date && ` · ${a.date}`}
+                        </p>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ol>
+            </section>
+          ))}
         </div>
       </div>
     </section>
