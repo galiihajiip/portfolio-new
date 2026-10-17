@@ -1,0 +1,10 @@
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+.env*.local
+playwright-report/
+test-results/
+.DS_Store
+stitch_the_builder_s_atlas_portfolio.zip
