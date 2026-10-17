@@ -1,0 +1,493 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens (from the Stitch "Builder's Atlas" DESIGN.md)
+   ------------------------------------------------------------------ */
+@theme {
+  --color-cream: #fff5e6;
+  --color-cream-deep: #f7e8cf;
+  --color-paper: #fffaf2;
+  --color-ink: #202735;
+  --color-ink-soft: #3b4354;
+  --color-teal: #2c929c;
+  --color-teal-light: #8fd3d9;
+  --color-teal-deep: #123f49;
+  --color-mustard: #f6b832;
+  --color-mustard-soft: #fde3a6;
+  --color-coral: #ef5b4e;
+  --color-coral-soft: #ffd4cf;
+  --color-slate: #6b6f78;
+  --color-slate-light: #85858a;
+
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", monospace;
+
+  --radius-card: 0.75rem;
+  --radius-panel: 1rem;
+
+  --shadow-1: 3px 3px 0 0 var(--color-ink);
+  --shadow-2: 4px 4px 0 0 var(--color-ink);
+  --shadow-3: 6px 6px 0 0 var(--color-ink);
+  --shadow-lift: 8px 10px 0 0 var(--color-ink);
+
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --breakpoint-xs: 30rem;
+}
+
+:root {
+  --gutter: clamp(1rem, 3.2vw, 2.5rem);
+  --section-y: clamp(4.5rem, 10vw, 8.5rem);
+  --header-h: 4.5rem;
+  --dur-fast: 160ms;
+  --dur-med: 320ms;
+  color-scheme: light;
+}
+
+/* ------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+    line-height: 1.04;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    background: var(--color-mustard);
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-mustard);
+    outline-offset: 3px;
+    border-radius: 6px;
+    box-shadow: 0 0 0 6px var(--color-ink);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------
+   Components
+   ------------------------------------------------------------------ */
+@layer components {
+  .container-atlas {
+    width: 100%;
+    max-width: 88rem;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .section {
+    padding-block: var(--section-y);
+    position: relative;
+  }
+
+  /* Dotted coordinate grid used on teal surfaces */
+  .bg-atlas-grid {
+    background-color: var(--color-teal);
+    background-image: radial-gradient(rgb(255 245 230 / 0.18) 1.2px, transparent 1.3px);
+    background-size: 22px 22px;
+  }
+  .bg-paper-grid {
+    background-image: radial-gradient(rgb(32 39 53 / 0.07) 1px, transparent 1.1px);
+    background-size: 20px 20px;
+  }
+
+  /* Cream paperboard panel */
+  .panel {
+    background: var(--color-paper);
+    border: 2px solid var(--color-ink);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--shadow-2);
+  }
+  .panel-lg {
+    border-width: 2.5px;
+    box-shadow: var(--shadow-3);
+  }
+  .panel-flat {
+    background: var(--color-paper);
+    border: 2px solid var(--color-ink);
+    border-radius: var(--radius-card);
+  }
+
+  /* Mono labels: used sparingly for metadata */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.32rem 0.75rem;
+    border: 2px solid var(--color-ink);
+    border-radius: 999px;
+    background: var(--color-paper);
+    box-shadow: 2px 2px 0 0 var(--color-ink);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.55rem;
+    border: 1.5px solid var(--color-ink);
+    border-radius: 0.4rem;
+    background: var(--color-cream);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* Buttons: press down onto their shadow */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3rem;
+    padding: 0.7rem 1.35rem;
+    border: 2.5px solid var(--color-ink);
+    border-radius: 0.85rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    color: var(--color-ink);
+    box-shadow: var(--shadow-2);
+    transition:
+      transform var(--dur-fast) var(--ease-out-quart),
+      box-shadow var(--dur-fast) var(--ease-out-quart),
+      background-color var(--dur-fast) linear;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 0 var(--color-ink);
+  }
+  .btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 0 var(--color-ink);
+  }
+  .btn-primary {
+    background: var(--color-mustard);
+  }
+  .btn-secondary {
+    background: var(--color-paper);
+  }
+  .btn-secondary:hover {
+    background: var(--color-teal-light);
+  }
+  .btn-dark {
+    background: var(--color-ink);
+    color: var(--color-cream);
+    border-color: var(--color-ink);
+    box-shadow: 4px 4px 0 0 var(--color-mustard);
+  }
+  .btn-dark:hover {
+    box-shadow: 2px 2px 0 0 var(--color-mustard);
+  }
+  .btn-sm {
+    min-height: 2.5rem;
+    padding: 0.45rem 0.95rem;
+    font-size: 0.9rem;
+    border-width: 2px;
+    box-shadow: var(--shadow-1);
+  }
+  .btn[aria-disabled="true"],
+  .btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: var(--shadow-1);
+  }
+
+  .icon-btn {
+    display: inline-grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border: 2.5px solid var(--color-ink);
+    border-radius: 999px;
+    background: var(--color-paper);
+    box-shadow: var(--shadow-2);
+    transition:
+      transform var(--dur-fast) var(--ease-out-quart),
+      box-shadow var(--dur-fast) var(--ease-out-quart),
+      background-color var(--dur-fast) linear,
+      opacity var(--dur-fast) linear;
+  }
+  .icon-btn:hover:not(:disabled) {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 0 var(--color-ink);
+    background: var(--color-mustard);
+  }
+  .icon-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    box-shadow: 2px 2px 0 0 var(--color-ink);
+  }
+
+  .link-underline {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--color-mustard);
+    transition: text-decoration-color var(--dur-fast) linear;
+  }
+  .link-underline:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .display-xl {
+    font-size: clamp(2.6rem, 6.4vw, 5.6rem);
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 0.95;
+  }
+  .display-lg {
+    font-size: clamp(2.2rem, 5vw, 4.25rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 0.98;
+  }
+  .display-md {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+  .prose-atlas {
+    font-size: clamp(1rem, 1.1vw, 1.125rem);
+    line-height: 1.7;
+    max-width: 62ch;
+  }
+
+  /* Map pin (shared by the 3D overlay and the fallback map) */
+  .map-pin {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.85rem 0.3rem 0.3rem;
+    border: 2px solid var(--color-ink);
+    border-radius: 999px;
+    background: var(--color-paper);
+    box-shadow: var(--shadow-1);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      transform var(--dur-fast) var(--ease-spring),
+      background-color var(--dur-fast) linear,
+      box-shadow var(--dur-fast) linear;
+  }
+  .map-pin__index {
+    display: grid;
+    place-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 999px;
+    background: var(--color-ink);
+    color: var(--color-cream);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+  }
+  .map-pin:hover,
+  .map-pin[data-hovered="true"] {
+    transform: translateY(-3px);
+    background: var(--color-mustard-soft);
+  }
+  .map-pin[data-active="true"] {
+    background: var(--color-mustard);
+    box-shadow: var(--shadow-2);
+    transform: translateY(-4px) scale(1.04);
+  }
+  .map-pin[data-active="true"] .map-pin__index {
+    background: var(--color-coral);
+  }
+  .map-pin::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    width: 2px;
+    height: 14px;
+    background: var(--color-ink);
+    transform: translateX(-50%);
+  }
+
+  /* Project card: tactile lift with a restrained tilt */
+  .project-card {
+    --rx: 0deg;
+    --ry: 0deg;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--color-paper);
+    border: 2.5px solid var(--color-ink);
+    border-radius: 1.1rem;
+    box-shadow: var(--shadow-2);
+    overflow: hidden;
+    transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+    transition:
+      transform var(--dur-med) var(--ease-out-quart),
+      box-shadow var(--dur-med) var(--ease-out-quart);
+    will-change: transform;
+  }
+  .project-card__media img,
+  .project-card__media svg {
+    transition: transform 600ms var(--ease-out-quart);
+  }
+  .project-card__arrow {
+    transition:
+      transform var(--dur-med) var(--ease-spring),
+      background-color var(--dur-fast) linear;
+  }
+  .project-card__title {
+    transition: color var(--dur-fast) linear;
+  }
+  .project-card:focus-within {
+    box-shadow: var(--shadow-lift);
+  }
+  @media (hover: hover) {
+    .project-card:hover {
+      transform: perspective(900px) translate(-3px, -6px) rotateX(var(--rx)) rotateY(var(--ry));
+      box-shadow: var(--shadow-lift);
+    }
+    .project-card:hover .project-card__media img,
+    .project-card:hover .project-card__media svg {
+      transform: scale(1.05);
+    }
+    .project-card:hover .project-card__arrow {
+      transform: translateX(5px);
+      background: var(--color-mustard);
+    }
+    .project-card:hover .project-card__meta {
+      color: var(--color-ink);
+    }
+  }
+
+  /* Hide native scrollbar on the carousel track but keep it scrollable */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Gentle entrance, driven by scroll position (no JS, never fully hidden) */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        animation: reveal linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 55%;
+      }
+    }
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0.35;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgb(239 91 78 / 0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 10px rgb(239 91 78 / 0);
+  }
+}
+
+@keyframes scroll-cue {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(6px);
+    opacity: 0.4;
+  }
+}
+
+/* Pins positioned every frame by the 3D projector must not tween transform. */
+.map-pin--tracked {
+  transition-property: background-color, box-shadow, opacity;
+}
+.map-pin--tracked[data-active="true"] {
+  z-index: 2;
+}
