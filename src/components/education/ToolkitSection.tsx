@@ -1,8 +1,8 @@
-import { BadgeCheck, GraduationCap, Wrench } from "lucide-react";
+import { BadgeCheck, GraduationCap, Rocket, Wrench } from "lucide-react";
 import Link from "next/link";
 import { DraftNote } from "@/components/ui/DraftNote";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { capabilities, certifications, education } from "@/content/education";
+import { capabilities, certifications, education, programmeKindLabels, programmes } from "@/content/education";
 import { chapters } from "@/content/stories";
 import { isDev } from "@/lib/site-config";
 import { formatRange } from "@/lib/utils";
@@ -21,12 +21,14 @@ export function ToolkitSection() {
               <GraduationCap className="size-4" aria-hidden /> Education
             </h3>
             {education.map((e) => (
-              <article key={e.id} className="panel reveal p-6">
+              <article key={e.id} className="panel reveal p-5">
                 <p className="label text-teal">{formatRange(e.start, e.end) ?? "Current studies"}</p>
-                <h4 className="mt-2 font-display text-2xl font-bold">{e.programme}</h4>
+                <h4 className="mt-2 font-display text-xl font-bold leading-snug">
+                  {e.programme}
+                  {e.field && e.field !== e.programme && <span className="font-medium text-ink-soft"> · {e.field}</span>}
+                </h4>
                 <p className="mt-1 font-semibold text-ink-soft">{e.institution}</p>
-                {e.degree && <p className="text-sm text-slate">{e.degree}</p>}
-                {e.location && <p className="text-sm text-slate">{e.location}</p>}
+                <p className="text-sm text-slate">{[e.degree, e.grade, e.location].filter(Boolean).join(" · ")}</p>
                 {!!e.details?.length && (
                   <ul className="mt-3 list-disc space-y-1 pl-5 text-ink-soft">
                     {e.details.map((d) => (
@@ -111,6 +113,37 @@ export function ToolkitSection() {
             </ul>
           </div>
         </div>
+
+        {programmes.length > 0 && (
+          <div className="mt-16">
+            <h3 className="label mb-6 flex items-center gap-2 text-slate">
+              <Rocket className="size-4" aria-hidden /> Programmes, training & industry visits
+            </h3>
+            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {programmes.map((p) => (
+                <li key={p.id} className="panel-flat reveal flex flex-col bg-paper p-5">
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="label text-teal">{programmeKindLabels[p.kind]}</span>
+                    <span className="font-mono text-xs text-slate">{formatRange(p.start, p.end)}</span>
+                  </div>
+                  <h4 className="mt-2 font-display text-lg font-bold leading-snug">{p.title}</h4>
+                  <p className="text-sm font-semibold text-ink-soft">{p.organisation}</p>
+                  {(p.location || p.arrangement) && <p className="text-sm text-slate">{[p.location, p.arrangement].filter(Boolean).join(" · ")}</p>}
+                  {!!p.highlights?.length && (
+                    <ul className="mt-auto flex flex-wrap gap-1.5 pt-3" aria-label="Activities">
+                      {p.highlights.map((h) => (
+                        <li key={h} className="tag">
+                          {h}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  <DraftNote entry={p} className="mt-3" />
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </section>
   );
