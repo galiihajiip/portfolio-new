@@ -109,7 +109,7 @@ export const principles = [
 export const about = {
   headline: "The person behind the map.",
   body: [
-    "I'm an Informatics student interested in what happens when technical ideas meet real problems.",
+    "Hi, I'm Galih Aji Pangestu (GAPZ.), an Informatics student at UPN “Veteran” Jawa Timur interested in what happens when technical ideas meet real problems.",
     "My work takes me across software, AI, research, and collaborative projects. I enjoy understanding a challenge, building a solution, testing assumptions, and improving the result.",
     "I see this portfolio as a record of what I am learning, the things I have built, and the directions I am continuing to explore.",
   ],
