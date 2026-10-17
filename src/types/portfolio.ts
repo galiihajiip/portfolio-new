@@ -89,7 +89,9 @@ export type ExperienceType =
   | "employment"
   | "technical-appointment"
   | "research-role"
-  | "collaboration";
+  | "collaboration"
+  | "contract"
+  | "venture";
 
 export interface Experience extends DraftMarker {
   id: string;
@@ -97,6 +99,8 @@ export interface Experience extends DraftMarker {
   position: string;
   type: ExperienceType;
   location?: string;
+  /** e.g. "Remote", "Hybrid", "Part-time". */
+  arrangement?: string;
   start?: string;
   end?: string;
   summary?: string;
@@ -109,12 +113,23 @@ export interface Experience extends DraftMarker {
   logo?: ImageAsset;
 }
 
+export type OrganisationKind = "leadership" | "organisation" | "volunteer" | "community";
+
 export interface LeadershipRole extends DraftMarker {
   id: string;
+  kind: OrganisationKind;
+  /** Featured roles appear as full cards; the rest in the compact log. */
+  featured?: boolean;
   organisation: string;
   position: string;
+  /** Event or programme the role belonged to, e.g. "PIXEL 2025". */
+  event?: string;
+  location?: string;
+  arrangement?: string;
   start?: string;
   end?: string;
+  /** Activities, media, or certificates attached to the role. */
+  highlights?: string[];
   scope?: string;
   initiatives?: string[];
   coordination?: string;
@@ -143,9 +158,10 @@ export interface ResearchEntry extends DraftMarker {
   doi?: string;
   links?: ExternalLink[];
   relatedProject?: string;
+  relatedAchievement?: string;
 }
 
-export type AchievementCategory = "competition" | "scholarship" | "programme" | "recognition";
+export type AchievementCategory = "competition" | "scholarship" | "programme" | "recognition" | "delegation";
 
 export interface Achievement extends DraftMarker {
   id: string;
@@ -182,8 +198,22 @@ export interface Education extends DraftMarker {
   start?: string;
   end?: string;
   location?: string;
+  grade?: string;
   details?: string[];
   links?: ExternalLink[];
+}
+
+/** Training cohorts, bootcamps, mentoring programmes and industry visits. */
+export interface Programme extends DraftMarker {
+  id: string;
+  title: string;
+  organisation: string;
+  kind: "training" | "mentoring" | "membership" | "visit";
+  location?: string;
+  arrangement?: string;
+  start?: string;
+  end?: string;
+  highlights?: string[];
 }
 
 export interface CapabilityGroup extends DraftMarker {
