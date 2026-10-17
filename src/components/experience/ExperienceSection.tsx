@@ -46,9 +46,9 @@ function ExperienceEntry({ entry, index }: { entry: Experience; index: number })
           <span className="flex items-center gap-1.5 text-ink">
             <Briefcase className="size-3.5" aria-hidden /> {entry.organisation}
           </span>
-          {entry.location && (
+          {(entry.location || entry.arrangement) && (
             <span className="flex items-center gap-1.5">
-              <MapPin className="size-3.5" aria-hidden /> {entry.location}
+              <MapPin className="size-3.5" aria-hidden /> {[entry.location, entry.arrangement].filter(Boolean).join(" · ")}
             </span>
           )}
           {range && <span className="text-teal">{experienceTypeLabels[entry.type]}</span>}
@@ -89,17 +89,34 @@ function ExperienceEntry({ entry, index }: { entry: Experience; index: number })
   );
 }
 
+const FEATURED_COUNT = 4;
+
 export function ExperienceSection() {
   const c = chapters.apply;
+  const recent = experience.slice(0, FEATURED_COUNT);
+  const earlier = experience.slice(FEATURED_COUNT);
   return (
     <section id={c.id} aria-labelledby="experience-title" className="section">
       <div className="container-atlas">
         <SectionHeading chapter={c} id="experience-title" />
         <ol className="mt-14 space-y-8">
-          {experience.map((e, i) => (
+          {recent.map((e, i) => (
             <ExperienceEntry key={e.id} entry={e} index={i} />
           ))}
         </ol>
+        {earlier.length > 0 && (
+          <details className="group mt-10">
+            <summary className="btn btn-secondary cursor-pointer list-none">
+              <ChevronDown className="size-4 transition-transform group-open:rotate-180" aria-hidden />
+              Earlier experience ({earlier.length})
+            </summary>
+            <ol className="mt-8 space-y-8">
+              {earlier.map((e, i) => (
+                <ExperienceEntry key={e.id} entry={e} index={i + FEATURED_COUNT} />
+              ))}
+            </ol>
+          </details>
+        )}
       </div>
     </section>
   );
