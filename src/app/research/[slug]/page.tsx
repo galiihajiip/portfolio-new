@@ -31,7 +31,8 @@ export default async function ResearchEntryPage({ params }: PageProps<"/research
     ["Date", entry.date],
     ["Role", entry.role],
     ["Institution", entry.institution],
-    ["Collaborators", entry.collaborators?.join(", ")],
+    ["Co-authors", entry.collaborators?.join(", ")],
+    ["Funding", entry.funding],
     ["Venue", entry.venue],
   ].filter(([, v]) => !!v) as [string, string][];
 
