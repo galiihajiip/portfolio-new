@@ -7,6 +7,39 @@ import type { ResearchEntry, ResearchStatus } from "@/types/portfolio";
  */
 export const research: ResearchEntry[] = [
   {
+    id: "maize-disease-research",
+    slug: "maize-disease-detection",
+    title: "Computer Vision for Maize Plant Disease Detection",
+    titleNote: "Working title",
+    summary:
+      "Training a computer vision model on thousands of plant images to detect diseases in maize. A funded collaboration between the Faculty of Computer Science and the Faculty of Agriculture, working toward a Scopus-indexed publication.",
+    objective: "Detect maize plant diseases from images so problems can be identified earlier in the field.",
+    methods: ["Computer vision", "Deep learning", "Image dataset"],
+    institution: "Faculty of Computer Science × Faculty of Agriculture, UPN “Veteran” Jawa Timur",
+    status: "in-progress",
+    date: "2026",
+    relatedProject: "maize-disease-detection",
+    draft: true,
+    todo: ["Funder", "Co-authors", "Model and dataset details"],
+  },
+  {
+    id: "smart-irrigation-research",
+    slug: "smart-irrigation-system",
+    title: "IoT Smart Irrigation and Monitoring Dashboard for Automated Farming",
+    titleNote: "Working title",
+    summary:
+      "A community service research project that uses IoT sensors and a monitoring dashboard to automate irrigation, funded by LPPM UPN “Veteran” Jawa Timur with lecturers from the Faculty of Agriculture, working toward a Scopus-indexed publication.",
+    objective: "Automate irrigation from sensor readings and make field conditions visible through a dashboard.",
+    methods: ["Internet of Things", "Sensor monitoring", "Dashboard"],
+    institution: "Faculty of Agriculture, UPN “Veteran” Jawa Timur",
+    funding: "LPPM UPN “Veteran” Jawa Timur (community service scheme)",
+    status: "in-progress",
+    date: "2026",
+    relatedProject: "smart-irrigation",
+    draft: true,
+    todo: ["Co-authors", "Hardware and stack"],
+  },
+  {
     id: "isrm-2026",
     slug: "isrm-2026",
     title:
