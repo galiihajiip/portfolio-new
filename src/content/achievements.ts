@@ -43,6 +43,14 @@ export const achievements: Achievement[] = [
     featured: true,
   },
   {
+    id: "ibc-2026",
+    title: "International Business Competition (IBC) 2026",
+    organiser: "Universitas Brawijaya",
+    category: "competition",
+    result: "Top 5 Finalist",
+    date: "Oct 2026",
+  },
+  {
     id: "luminux-2026",
     title: "Business Model Canvas Competition — LUMINUX 2.0 2026",
     organiser: "Himpunan Mahasiswa Manajemen Informatika UNESA",
