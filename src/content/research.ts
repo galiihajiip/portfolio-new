@@ -7,6 +7,32 @@ import type { ResearchEntry, ResearchStatus } from "@/types/portfolio";
  */
 export const research: ResearchEntry[] = [
   {
+    id: "isrm-2026",
+    slug: "isrm-2026",
+    title:
+      "Ethical Web Scraping of Southeast Asian Food Composition Databases: An Automated Pipeline for Extracting and Harmonizing TKPI and MyFCD Nutritional Data",
+    summary:
+      "An automated, ethical web-scraping pipeline that extracts nutritional data from Indonesia's food composition table (TKPI) and the Malaysian Food Composition Database (MyFCD) and harmonises it into one comparable dataset. Part of a Jatim Melaju–funded research project led by lecturers of the Department of Informatics, which I was invited to join; I presented it as first author at the 11th International Seminar of Research Month (ISRM) 2026. The wider project is working toward a Scopus-indexed journal article.",
+    objective:
+      "Build an automated pipeline that collects Southeast Asian food composition data responsibly and harmonises the TKPI and MyFCD datasets so their nutritional values can be compared and reused.",
+    methods: ["Ethical web scraping", "Data extraction pipeline", "Data harmonisation"],
+    role: "First author & oral presenter",
+    institution: "Department of Informatics, Faculty of Computer Science, UPN “Veteran” Jawa Timur",
+    collaborators: ["Intan Yuniar Purbasari, S.Kom., M.Sc.", "Fetty Tri Anggraeny, S.Kom., M.Kom."],
+    funding: "Jatim Melaju research funding",
+    venue: "11th International Seminar of Research Month (ISRM) 2026 · Virtual, 22–23 September 2026",
+    status: "presented",
+    date: "Sep 2026",
+    draft: true,
+    todo: [
+      "Track: Science & Engineering or Social Sciences & Humanities",
+      "Official full name of the Jatim Melaju funding scheme, if different",
+      "Check the objective wording; add tools (e.g. Python libraries) to `methods`",
+      "Key results, e.g. number of foods harmonised (only if stated in the paper)",
+      "Proceedings link or DOI once published (then status can become 'published')",
+    ],
+  },
+  {
     id: "applied-ml-data-mining",
     slug: "applied-machine-learning",
     title: "Applied Machine Learning & Data Mining Research",
