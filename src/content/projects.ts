@@ -262,7 +262,6 @@ export const projects: Project[] = [
     technologies: ["Next.js", "Tesseract.js OCR", "Supabase"],
     status: "prototype",
     links: { repository: gh("catatduit-ai"), demo: "https://catatduit-ai.vercel.app" },
-    todo: ["Was this the KOIN 2026 accounting application? If yes, I'll merge the two entries"],
   },
   {
     id: "tulis-in",
@@ -366,45 +365,6 @@ export const projects: Project[] = [
     technologies: ["HTML", "JavaScript"],
     status: "competition-entry",
     links: { repository: gh("TUMBUH") },
-  },
-  {
-    id: "halo-kampus",
-    slug: "halo-kampus",
-    title: "Telkomsel Halo Kampus",
-    category: "software",
-    year: "2026",
-    summary:
-      "A number-ordering and inventory system that lets university students browse, reserve, and order Telkomsel Halo numbers with campus data packages, without conflicts between online orders and campus sales teams.",
-    technologies: ["Next.js", "TypeScript", "Supabase"],
-    status: "prototype",
-    links: { repository: gh("halo") },
-    todo: ["Built during the Telkomsel internship? Confirm it's fine to show publicly"],
-  },
-  {
-    id: "signal-quest",
-    slug: "signal-quest",
-    title: "Signal Quest",
-    category: "software",
-    year: "2026",
-    summary:
-      "A Telkomsel market-research survey for Surabaya university students packaged as a 2D adventure game so respondents don't skip it, with an analytics dashboard for the research team.",
-    technologies: ["Next.js 15", "Supabase", "Zustand", "Recharts", "PWA"],
-    status: "prototype",
-    links: { repository: gh("inlife-b") },
-    todo: ["Built during the Telkomsel internship? Confirm it's fine to show publicly"],
-  },
-  {
-    id: "sod-market-research",
-    slug: "sod-market-research",
-    title: "SOD Surabaya Market Research Pipeline",
-    category: "research",
-    year: "2026",
-    summary:
-      "A reproducible pipeline that turns public Instagram comments from the SOD Surabaya event into market research (sentiment, intent, topics, engagement) for a Telkomsel starter-card sales programme.",
-    technologies: ["Python", "pandas", "scikit-learn", "matplotlib"],
-    status: "completed",
-    links: { repository: gh("scraping-sod") },
-    todo: ["Confirm status and that it's fine to show publicly"],
   },
   {
     id: "upn-alumni-scraper",
