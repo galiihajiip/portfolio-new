@@ -35,12 +35,13 @@ export const achievements: Achievement[] = [
   },
   {
     id: "exploraition-2026",
-    title: "48-Hour Hackathon — ExplorAItion Batch 3 2026",
+    title: "48-Hour Hackathon — ExplorAItion Batch 4 2026",
     organiser: "KOMDIGI × Garuda Spark × Ngalup.co",
     category: "competition",
     result: "Most Innovative Product",
     date: "Oct 2026",
     featured: true,
+    todo: ["LinkedIn says Batch 3; you confirmed Batch 4. Update LinkedIn too, and check the month"],
   },
   {
     id: "ibc-2026",
