@@ -93,15 +93,49 @@ export const projects: Project[] = [
     title: "Smart Irrigation System",
     titleNote: "Working title",
     category: "data-iot",
+    year: "2026",
     summary:
-      "An IoT engineering project on sensor-informed irrigation: measuring field conditions and using them to decide when to water.",
-    status: "prototype",
+      "An IoT irrigation system with a monitoring dashboard for automated farming, built as an LPPM UPN “Veteran” Jawa Timur–funded community service project with lecturers from the Faculty of Agriculture.",
+    status: "in-progress",
+    featured: true,
+    caseStudy: {
+      overview:
+        "A community service (pengabdian kepada masyarakat) project that brings IoT into farming: field sensors feed a monitoring dashboard, and irrigation runs automatically based on the readings. The project is funded by LPPM UPN “Veteran” Jawa Timur and carried out with lecturers from the Faculty of Agriculture (Faperta). The research team is working toward a Scopus-indexed publication.",
+      objectives: [
+        "Automate irrigation using sensor data from the field.",
+        "Give farmers a monitoring dashboard to see field conditions.",
+      ],
+    },
     draft: true,
     todo: [
-      "Confirm scope and status",
-      "Hardware (microcontroller, sensors) and software stack",
-      "Your role and collaborators",
-      "Photos of the device or dashboard",
+      "Your role and the lecturers involved",
+      "Hardware (microcontroller, sensors) and dashboard stack",
+      "Partner farmers or village, if public",
+      "Photos of the device and dashboard",
+    ],
+  },
+  {
+    id: "maize-disease-detection",
+    slug: "maize-disease-detection",
+    title: "Maize Leaf Disease Detection",
+    titleNote: "Working title",
+    category: "ai",
+    year: "2026",
+    summary:
+      "A computer vision model that detects diseases in maize (corn) plants, trained on thousands of images. A funded research collaboration between lecturers of the Faculty of Computer Science and the Faculty of Agriculture.",
+    status: "in-progress",
+    featured: true,
+    caseStudy: {
+      overview:
+        "A computer vision research project focused on maize plant diseases. The model is trained on a dataset of thousands of plant images to recognise disease from photos. It is a funded collaboration between lecturers of the Faculty of Computer Science (Fasilkom) and the Faculty of Agriculture (Faperta) at UPN “Veteran” Jawa Timur, working toward a Scopus-indexed publication.",
+      objectives: ["Detect maize plant diseases from images using computer vision."],
+    },
+    draft: true,
+    todo: [
+      "Funding source (LPPM UPNVJT?)",
+      "Diseases covered, dataset size and source",
+      "Model architecture and results (only verified numbers)",
+      "Your role and the lecturers involved",
     ],
   },
   {
