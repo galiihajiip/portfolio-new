@@ -134,6 +134,20 @@ export const leadership: LeadershipRole[] = [
     todo: ["Initiatives you led", "Team size and how you coordinated it"],
   },
   {
+    id: "himatifa-inception-2026",
+    kind: "leadership",
+    featured: true,
+    organisation: "HIMATIFA UPNV JATIM",
+    position: "PIC Hackathon",
+    event: "INCEPTION 2026",
+    start: "2026",
+    end: "2026",
+    scope:
+      "Led the hackathon branch of INCEPTION 2026, HIMATIFA's largest national IT competition, which runs four branches: UI/UX, data science, hackathon, and business plan, with 200+ participating teams.",
+    highlights: ["INCEPTION 2026", "4 competition branches", "200+ teams"],
+    todo: ["Month(s)", "Confirm whether 200+ teams is the whole event or the hackathon branch", "Committee size you coordinated"],
+  },
+  {
     id: "google-student-ambassador",
     kind: "leadership",
     featured: true,
