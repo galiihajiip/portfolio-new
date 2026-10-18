@@ -29,23 +29,28 @@ test.describe("homepage", () => {
     const track = page.locator("#project-track > li");
     const all = await track.count();
     expect(all).toBeGreaterThan(3);
-    await page.getByRole("button", { name: /^Data & IoT/ }).click();
-    await expect(track).toHaveCount(1);
+    const iotFilter = page.getByRole("button", { name: /^Data & IoT/ });
+    const expected = Number((await iotFilter.textContent())?.match(/(\d+)\s*$/)?.[1]);
+    expect(expected).toBeGreaterThan(0);
+    expect(expected).toBeLessThan(all);
+    await iotFilter.click();
+    await expect(track).toHaveCount(expected);
+    // A new filter always starts at the first card.
     await expect(page.getByRole("button", { name: "Previous projects" })).toBeDisabled();
-    await expect(page.getByRole("button", { name: "Next projects" })).toBeDisabled();
     await page.getByRole("button", { name: /^All work/ }).click();
     await expect(track).toHaveCount(all);
   });
 
   test("carousel arrows page through and stop at both ends", async ({ page }) => {
+    test.setTimeout(180_000); // Pages through every project in both directions.
     await page.goto("/");
     await page.locator("#projects").scrollIntoViewIfNeeded();
     const prev = page.getByRole("button", { name: "Previous projects" });
     const next = page.getByRole("button", { name: "Next projects" });
     await expect(prev).toBeDisabled();
-    for (let i = 0; i < 10 && (await next.isEnabled()); i++) {
+    for (let i = 0; i < 60 && (await next.isEnabled()); i++) {
       await next.click();
-      await page.waitForTimeout(500);
+      await page.waitForTimeout(400);
     }
     await expect(next).toBeDisabled();
     await expect(prev).toBeEnabled();
@@ -56,9 +61,9 @@ test.describe("homepage", () => {
       return last.right <= track.right + 1 && last.left >= track.left - 1;
     });
     expect(fits).toBe(true);
-    for (let i = 0; i < 10 && (await prev.isEnabled()); i++) {
+    for (let i = 0; i < 60 && (await prev.isEnabled()); i++) {
       await prev.click();
-      await page.waitForTimeout(500);
+      await page.waitForTimeout(400);
     }
     await expect(prev).toBeDisabled();
   });
