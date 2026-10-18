@@ -1,9 +1,10 @@
-import { ChevronDown, Users } from "lucide-react";
+import { ChevronDown, MapPin, Mic, Users } from "lucide-react";
 import { DraftNote } from "@/components/ui/DraftNote";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SmartLink } from "@/components/ui/SmartLink";
 import { leadership, organisationKindLabels } from "@/content/experience";
 import { chapters } from "@/content/stories";
+import { talks } from "@/content/talks";
 import { formatRange } from "@/lib/utils";
 import type { LeadershipRole } from "@/types/portfolio";
 
@@ -85,6 +86,42 @@ export function LeadershipSection() {
             </li>
           ))}
         </ul>
+
+        {talks.length > 0 && (
+          <div className="mt-14">
+            <h3 className="label mb-5 flex items-center gap-2 text-slate">
+              <Mic className="size-4" aria-hidden /> Speaking & knowledge sharing
+            </h3>
+            <ul className="grid gap-5 md:grid-cols-2">
+              {talks.map((t) => (
+                <li key={t.id}>
+                  <article className="panel-flat reveal flex h-full flex-col bg-paper p-5">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <span className="chip bg-mustard">{t.role}</span>
+                      {t.date && <span className="font-mono text-xs text-slate">{t.date}</span>}
+                    </div>
+                    <h4 className="mt-3 font-display text-xl font-bold leading-snug">{t.event}</h4>
+                    <p className="mt-2 text-ink-soft">{t.topic}</p>
+                    <p className="mt-auto pt-3 text-sm text-slate">
+                      {[t.audience, t.organiser].filter(Boolean).join(" · ")}
+                      {t.location && (
+                        <span className="mt-0.5 flex items-center gap-1">
+                          <MapPin className="size-3.5" aria-hidden /> {t.location}
+                        </span>
+                      )}
+                    </p>
+                    {t.link && (
+                      <SmartLink href={t.link} className="link-underline mt-2 text-sm font-semibold">
+                        Watch or read more
+                      </SmartLink>
+                    )}
+                    <DraftNote entry={{ draft: !!t.todo, todo: t.todo }} className="mt-3" />
+                  </article>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {log.length > 0 && (
           <details className="group mt-12 rounded-2xl border-[2.5px] border-ink bg-paper shadow-[4px_4px_0_0_var(--color-ink)]">
