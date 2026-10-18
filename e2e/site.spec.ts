@@ -125,8 +125,12 @@ test.describe("navigation and routes", () => {
 
   test("project archive filters and case-study navigation", async ({ page }) => {
     await page.goto("/projects");
-    await page.getByRole("button", { name: /^AI & Machine Learning/ }).click();
-    await expect(page.locator("#project-archive > li")).toHaveCount(2);
+    const aiFilter = page.getByRole("button", { name: /^AI & Machine Learning/ });
+    // The filter shows its own count; the grid must match it.
+    const expected = Number((await aiFilter.textContent())?.match(/(\d+)\s*$/)?.[1]);
+    expect(expected).toBeGreaterThan(0);
+    await aiFilter.click();
+    await expect(page.locator("#project-archive > li")).toHaveCount(expected);
     await page.goto("/projects/cogniflip");
     await expect(page.getByRole("heading", { level: 1, name: "CogniFlip" })).toBeVisible();
     await page.getByRole("link", { name: /Next/ }).last().click();
