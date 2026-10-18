@@ -195,6 +195,16 @@ export const achievements: Achievement[] = [
     date: "Mar 2026",
   },
 
+  {
+    id: "bintang-mandiri-6",
+    title: "Beasiswa Bintang Mandiri — Batch 6",
+    category: "scholarship",
+    result: "Scholarship Awardee",
+    date: "2026",
+    draft: true,
+    todo: ["Awarding organisation and month (not on LinkedIn)"],
+  },
+
   // 2025
   {
     id: "gelar-rasa-2025",
@@ -294,15 +304,6 @@ export const achievements: Achievement[] = [
     date: "Dec 2023",
   },
 
-  // Undated
-  {
-    id: "bintang-mandiri-6",
-    title: "Beasiswa Bintang Mandiri — Batch 6",
-    category: "scholarship",
-    result: "Scholarship Awardee",
-    draft: true,
-    todo: ["From your original brief, not on LinkedIn: add organiser and year, or delete"],
-  },
 ];
 
 export const achievementCategoryLabels: Record<AchievementCategory, string> = {
