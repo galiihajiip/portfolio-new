@@ -49,6 +49,8 @@ export const siteConfig = {
    * SEO. `seoTitle` is the homepage <title>: lead with the exact name people
    * search for. Set GOOGLE_SITE_VERIFICATION in Vercel to verify Search Console.
    */
+  /** Google Search Console HTML-tag token (public by design). Env var overrides it. */
+  googleSiteVerification: process.env.GOOGLE_SITE_VERIFICATION ?? "8WSDyNjcEvPCWCnCD2VfIXviHzi4I7x_VRw_rvhaP1o",
   seoTitle: "Galih Aji Pangestu — Informatics Student, AI & Software Builder",
   seoDescription:
     "Galih Aji Pangestu (GAPZ.) is an Informatics student at UPN “Veteran” Jawa Timur building AI, software, and research projects. Explore projects, experience, awards, and how to get in touch.",
