@@ -24,6 +24,7 @@ export const achievements: Achievement[] = [
     category: "competition",
     result: "3rd Place",
     date: "Oct 2026",
+    relatedProject: "hycane",
   },
   {
     id: "gayatama-2026",
@@ -32,6 +33,7 @@ export const achievements: Achievement[] = [
     category: "competition",
     result: "Finalist",
     date: "Oct 2026",
+    relatedProject: "pacul",
   },
   {
     id: "exploraition-2026",
@@ -75,7 +77,7 @@ export const achievements: Achievement[] = [
     result: "1st Runner-up",
     date: "Jul 2026",
     featured: true,
-    relatedProject: "fit-2026-web-development",
+    relatedProject: "radar",
   },
   {
     id: "indonesianext-2026",
@@ -93,7 +95,7 @@ export const achievements: Achievement[] = [
     category: "competition",
     result: "1st Winner",
     date: "Jun 2026",
-    relatedProject: "pibiti-2026-final-project",
+    relatedProject: "paygent-ai",
   },
   {
     id: "koin-2026",
@@ -186,6 +188,7 @@ export const achievements: Achievement[] = [
     category: "competition",
     result: "Top 6 Finalist",
     date: "Apr 2026",
+    relatedProject: "lentera",
   },
   {
     id: "findit-2026",
@@ -224,6 +227,7 @@ export const achievements: Achievement[] = [
     date: "Nov 2025",
     featured: true,
     todo: ["LinkedIn media mentions 'Tim Hitam'; add the team name to `context` if you want it shown"],
+    relatedProject: "gelar-rasa-2025",
   },
   {
     id: "studentsxceos-2025",
