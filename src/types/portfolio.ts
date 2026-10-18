@@ -150,6 +150,8 @@ export interface ResearchEntry extends DraftMarker {
   role?: string;
   institution?: string;
   collaborators?: string[];
+  /** Grant or funding scheme, e.g. "Jatim Melaju". */
+  funding?: string;
   methods?: string[];
   /** Only set when verified. Unset renders no status label. */
   status?: ResearchStatus;
@@ -246,4 +248,18 @@ export interface Chapter {
   headline: string;
   body: string[];
   region?: RegionId;
+}
+
+/** Talks, moderating, interviews and other knowledge-sharing appearances. */
+export interface Talk extends DraftMarker {
+  id: string;
+  role: "Speaker" | "Moderator" | "Interviewee" | "Panelist" | "Master of Ceremony" | "Facilitator";
+  event: string;
+  topic: string;
+  /** Who it was for, e.g. "New Informatics students". */
+  audience?: string;
+  organiser?: string;
+  location?: string;
+  date?: string;
+  link?: string;
 }
