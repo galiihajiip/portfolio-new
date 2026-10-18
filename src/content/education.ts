@@ -98,9 +98,9 @@ export const capabilities: CapabilityGroup[] = [
     description: "Designing and building working applications, tested in national web, hackathon, and application competitions.",
     tools: [],
     evidence: [
-      { label: "FIT 2026 web entry", href: "/projects/fit-2026-web-development" },
+      { label: "RADAR", href: "/projects/radar" },
       { label: "KOIN 2026 application", href: "/projects/koin-2026-accounting-application" },
-      { label: "PIBITI 2026", href: "/projects/pibiti-2026-final-project" },
+      { label: "PayGent AI", href: "/projects/paygent-ai" },
     ],
     todo: ["Languages and frameworks you use"],
   },
@@ -111,8 +111,8 @@ export const capabilities: CapabilityGroup[] = [
     tools: [],
     evidence: [
       { label: "CogniFlip", href: "/projects/cogniflip" },
-      { label: "Applied ML research", href: "/research/applied-machine-learning" },
-      { label: "Training cohorts", href: "/#toolkit" },
+      { label: "Maize disease detection", href: "/projects/maize-disease-detection" },
+      { label: "SIGAP AI", href: "/projects/sigap-ai" },
     ],
     todo: ["Libraries and models you have worked with"],
   },
@@ -133,7 +133,11 @@ export const capabilities: CapabilityGroup[] = [
     title: "IoT & Hardware",
     description: "Connecting sensors and software to respond to conditions in the physical world.",
     tools: [],
-    evidence: [{ label: "Smart irrigation", href: "/projects/smart-irrigation" }],
+    evidence: [
+      { label: "Smart irrigation", href: "/projects/smart-irrigation" },
+      { label: "HYCANE", href: "/projects/hycane" },
+      { label: "PITERS", href: "/projects/piters" },
+    ],
     todo: ["Boards, sensors, and platforms"],
   },
   {
