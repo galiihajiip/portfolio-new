@@ -7,7 +7,7 @@
  */
 
 export interface SocialLink {
-  id: "linkedin" | "github" | "scholar" | "orcid" | "instagram" | "website";
+  id: "linkedin" | "github" | "scholar" | "orcid" | "instagram" | "tiktok" | "website";
   label: string;
   href: string | null;
 }
@@ -34,8 +34,10 @@ export const siteConfig = {
 
   /** TODO(owner): fill in the profile URLs you want to show. */
   socials: [
-    { id: "linkedin", label: "LinkedIn", href: null },
+    { id: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/galiihajiip" },
     { id: "github", label: "GitHub", href: "https://github.com/galiihajiip" },
+    { id: "instagram", label: "Instagram", href: "https://www.instagram.com/galiihajiip" },
+    { id: "tiktok", label: "TikTok", href: "https://www.tiktok.com/@galiihajiip" },
     { id: "scholar", label: "Google Scholar", href: null },
   ] satisfies SocialLink[] as SocialLink[],
 
