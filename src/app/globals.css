@@ -491,3 +491,48 @@
 .map-pin--tracked[data-active="true"] {
   z-index: 2;
 }
+
+/* 3D Character speech bubble */
+.character-bubble {
+  position: absolute;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.9rem;
+  background: var(--color-paper);
+  border: 2px solid var(--color-ink);
+  border-radius: 1rem;
+  box-shadow: 3px 3px 0 0 var(--color-ink);
+  transition: transform var(--dur-fast) var(--ease-spring), box-shadow var(--dur-fast) linear, opacity 500ms ease;
+  white-space: nowrap;
+}
+.character-bubble:hover {
+  transform: translate(-50%, calc(-100% - 14px)) scale(1.05) !important;
+  background: var(--color-cream);
+  box-shadow: 4px 5px 0 0 var(--color-ink);
+}
+.character-bubble::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 7px solid var(--color-ink);
+  transform: translateX(-50%);
+}
+.character-bubble::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid var(--color-paper);
+  transform: translateX(-50%);
+  z-index: 1;
+}

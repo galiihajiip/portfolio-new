@@ -28,6 +28,9 @@ export const palette = {
   brick: "#9a4f3c",
   steel: "#5b6474",
   solar: "#29457a",
+  skin: "#f3c299",
+  hair: "#1a1e28",
+  pants: "#223147",
 };
 
 export const materials = {
@@ -48,6 +51,9 @@ export const materials = {
   wood: flat(palette.wood),
   woodDark: flat(palette.woodDark),
   brick: flat(palette.brick),
+  skin: flat(palette.skin),
+  hair: flat(palette.hair),
+  pants: flat(palette.pants),
   steel: flat(palette.steel, { roughness: 0.6, metalness: 0.2 }),
   solar: flat(palette.solar, { roughness: 0.35, metalness: 0.3 }),
   glass: flat(palette.glass, { transparent: true, opacity: 0.72, roughness: 0.2 }),

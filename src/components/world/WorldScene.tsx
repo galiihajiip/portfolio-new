@@ -2,11 +2,11 @@
 
 import { OrthographicCamera } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { regions } from "@/content/regions";
 import * as THREE from "three";
 import type { RegionId } from "@/types/portfolio";
-import { Island, pinAnchors } from "./island/Island";
+import { GREETING_ANCHOR, Island, pinAnchors } from "./island/Island";
 
 export interface Framing {
   /** Where the island's centre should sit, as fractions of the canvas. */
@@ -115,7 +115,15 @@ const Y_AXIS = new THREE.Vector3(0, 1, 0);
  * matching HTML pin. Pins are plain DOM buttons outside the canvas, so text
  * stays crisp and one rAF handles all six.
  */
-function PinTracker({ place, highlighted }: { place: (id: RegionId, x: number, y: number) => void; highlighted: RegionId[] }) {
+function PinTracker({
+  place,
+  placeGreeting,
+  highlighted,
+}: {
+  place: (id: RegionId, x: number, y: number) => void;
+  placeGreeting: (x: number, y: number) => void;
+  highlighted: RegionId[];
+}) {
   const v = useMemo(() => new THREE.Vector3(), []);
   useFrame((state) => {
     const { camera, size } = state;
@@ -126,6 +134,13 @@ function PinTracker({ place, highlighted }: { place: (id: RegionId, x: number, y
       const py = ((1 - v.y) / 2) * size.height;
       place(r.id, px, py);
     }
+    // Track greeting speech bubble above welcoming character
+    v.set(GREETING_ANCHOR[0], GREETING_ANCHOR[1], GREETING_ANCHOR[2])
+      .applyAxisAngle(Y_AXIS, ISLAND_ROTATION)
+      .project(camera);
+    const gx = ((v.x + 1) / 2) * size.width;
+    const gy = ((1 - v.y) / 2) * size.height;
+    placeGreeting(gx, gy);
   });
   return null;
 }
@@ -134,12 +149,34 @@ export default function WorldScene(props: WorldSceneProps) {
   const { framing, quality, animate, active, onReady, onError } = props;
   const shadows = quality === "high";
   const pins = useRef<PinMap>({});
+  const greetingRef = useRef<HTMLDivElement>(null);
+  const [greetingTextIndex, setGreetingTextIndex] = useState(0);
+
+  const greetings = [
+    "Hello! Welcome to my Atlas 👋",
+    "I'm Galih, nice to meet you! ✨",
+    "Explore the islands around! 🗺️",
+    "Let's build something great! 🚀",
+  ];
+
   const place = useCallback((id: RegionId, x: number, y: number) => {
     const el = pins.current[id];
     if (!el) return;
     el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) translate(-50%, calc(-100% - 14px))`;
     el.style.opacity = "1";
   }, []);
+
+  const placeGreeting = useCallback((x: number, y: number) => {
+    const el = greetingRef.current;
+    if (!el) return;
+    el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) translate(-50%, calc(-100% - 10px))`;
+    el.style.opacity = "1";
+  }, []);
+
+  const cycleGreeting = () => {
+    setGreetingTextIndex((prev) => (prev + 1) % greetings.length);
+  };
+
   const highlighted = [props.selected, props.hovered].filter(Boolean) as RegionId[];
 
   return (
@@ -168,10 +205,11 @@ export default function WorldScene(props: WorldSceneProps) {
           hovered={props.hovered}
           onHover={props.onHover}
           onSelect={props.onSelect}
+          onCharacterClick={cycleGreeting}
           animate={animate}
           density={quality === "high" ? 1 : 0.6}
         />
-        <PinTracker place={place} highlighted={highlighted} />
+        <PinTracker place={place} placeGreeting={placeGreeting} highlighted={highlighted} />
         <InvalidateOnChange deps={[props.selected, props.hovered, framing]} />
       </Canvas>
 
@@ -199,6 +237,20 @@ export default function WorldScene(props: WorldSceneProps) {
             </button>
           );
         })}
+
+        {/* Welcoming Speech Bubble from the 3D Character */}
+        <div
+          ref={greetingRef}
+          role="status"
+          onClick={cycleGreeting}
+          title="Click to talk!"
+          className="character-bubble pointer-events-auto absolute left-0 top-0 opacity-0 cursor-pointer select-none"
+        >
+          <div className="flex items-center gap-1.5 font-display text-xs font-bold text-ink sm:text-[0.82rem]">
+            <span className="inline-block size-2 shrink-0 animate-ping rounded-full bg-coral" />
+            <span>{greetings[greetingTextIndex]}</span>
+          </div>
+        </div>
       </div>
     </div>
   );

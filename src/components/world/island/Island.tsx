@@ -8,6 +8,7 @@ import type { RegionId } from "@/types/portfolio";
 import { Amphitheatre, Boat, Cabin, Dock, Forge, GlassLab, Lighthouse, Observatory } from "./Landmarks";
 import { pathDots, regionSites, scatterRocks, scatterTrees, type TerrainPiece, terrain, type Vec2 } from "./layout";
 import { geometries, materials } from "./materials";
+import { WelcomingBuilder } from "./WelcomingBuilder";
 
 export interface IslandProps {
   selected: RegionId | null;
@@ -16,7 +17,13 @@ export interface IslandProps {
   onSelect: (id: RegionId) => void;
   animate: boolean;
   density: number;
+  onCharacterClick?: () => void;
 }
+
+/** Local coordinates of the character standing at the dock pier */
+export const CHARACTER_ANCHOR: [number, number, number] = [-0.6, 0.35, 6.4];
+/** Local anchor where the greeting speech bubble should hang above the character's head */
+export const GREETING_ANCHOR: [number, number, number] = [-0.6, 1.45, 6.4];
 
 /* ------------------------------------------------------------------ */
 /* Terrain                                                            */
@@ -333,7 +340,15 @@ function RegionNode({
 /* Island                                                             */
 /* ------------------------------------------------------------------ */
 
-export function Island({ selected, hovered, onHover, onSelect, animate, density }: IslandProps) {
+export function Island({
+  selected,
+  hovered,
+  onHover,
+  onSelect,
+  animate,
+  density,
+  onCharacterClick,
+}: IslandProps) {
   return (
     // Rotated so local +x = screen right and local +z = towards the viewer.
     <group rotation={[0, Math.PI / 4, 0]}>
@@ -346,6 +361,10 @@ export function Island({ selected, hovered, onHover, onSelect, animate, density 
       <PathDots />
       <group position={[-0.6, 0, 6.6]}>
         <Dock animate={animate} />
+      </group>
+      {/* Welcoming animated 3D character greeting visitors on the pier */}
+      <group position={[-0.6, 0.35, 6.4]} rotation={[0, 0.25, 0]}>
+        <WelcomingBuilder animate={animate} onInteract={onCharacterClick} />
       </group>
       <FloatingBoat position={[-9.3, 0.05, 4.2]} rotation={0.6} animate={animate} />
       <FloatingBoat position={[8.6, 0.05, 6.0]} rotation={-0.9} animate={animate} />
