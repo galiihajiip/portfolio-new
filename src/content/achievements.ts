@@ -132,15 +132,6 @@ export const achievements: Achievement[] = [
     date: "Jun 2026",
   },
   {
-    id: "antigravity-2026",
-    title: "National Hackathon Competition — Google Antigravity 2026",
-    organiser: "Google Developer Groups Surabaya",
-    category: "competition",
-    result: "1st Winner",
-    date: "May 2026",
-    featured: true,
-  },
-  {
     id: "itdays-2026",
     title: "National Web Design Competition — IT DAYS 2026",
     organiser: "BEM Fakultas Ilmu Komputer dan Informatika Universitas Nurtanio Bandung",

@@ -23,7 +23,7 @@ export function personJsonLd() {
         familyName: "Pangestu",
         alternateName: siteConfig.alternateNames,
         url,
-        image: `${url}/opengraph-image`,
+        image: siteConfig.avatar ? `${url}${siteConfig.avatar.src}` : `${url}/opengraph-image`,
         jobTitle: siteConfig.jobTitle,
         description: siteConfig.positioning,
         knowsAbout: siteConfig.knowsAbout,

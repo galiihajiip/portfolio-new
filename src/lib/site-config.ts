@@ -44,8 +44,8 @@ export const siteConfig = {
   /** Optional downloadable CV in /public, e.g. "/cv/galih-aji-pangestu.pdf". */
   cvPath: null as string | null,
 
-  /** Optional profile photo in /public/assets/profile. */
-  avatar: null as { src: string; alt: string } | null,
+  /** Profile photo in /public/assets/profile. Used in the hero, About, JSON-LD and share image. */
+  avatar: { src: "/assets/profile/galih-aji-pangestu.png", alt: "Portrait of Galih Aji Pangestu" } as { src: string; alt: string } | null,
 
   /**
    * SEO. `seoTitle` is the homepage <title>: lead with the exact name people

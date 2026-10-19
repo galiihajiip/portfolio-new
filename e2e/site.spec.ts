@@ -1,5 +1,24 @@
 import { expect, type Page, test } from "@playwright/test";
 
+/** Resolves once the carousel track's scroll position stops changing. */
+const waitForScrollEnd = (page: Page) =>
+  page.waitForFunction(
+    () =>
+      new Promise<boolean>((resolve) => {
+        const track = document.getElementById("project-track");
+        if (!track) return resolve(true);
+        let last = track.scrollLeft;
+        let still = 0;
+        const tick = () => {
+          still = track.scrollLeft === last ? still + 1 : 0;
+          last = track.scrollLeft;
+          if (still >= 6) resolve(true);
+          else requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }),
+  );
+
 const noHorizontalOverflow = async (page: Page) =>
   expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(0);
 
@@ -50,7 +69,8 @@ test.describe("homepage", () => {
     await expect(prev).toBeDisabled();
     for (let i = 0; i < 60 && (await next.isEnabled()); i++) {
       await next.click();
-      await page.waitForTimeout(400);
+      // Arrow state updates when the smooth scroll settles; check only after that.
+      await waitForScrollEnd(page);
     }
     await expect(next).toBeDisabled();
     await expect(prev).toBeEnabled();
@@ -63,7 +83,8 @@ test.describe("homepage", () => {
     expect(fits).toBe(true);
     for (let i = 0; i < 60 && (await prev.isEnabled()); i++) {
       await prev.click();
-      await page.waitForTimeout(400);
+      // Arrow state updates when the smooth scroll settles; check only after that.
+      await waitForScrollEnd(page);
     }
     await expect(prev).toBeDisabled();
   });

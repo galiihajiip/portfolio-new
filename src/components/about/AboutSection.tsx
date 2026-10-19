@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { about } from "@/content/stories";
 import { siteConfig } from "@/lib/site-config";
 
@@ -12,6 +13,22 @@ export function AboutSection() {
           <h2 id="about-title" className="display-lg">
             {about.headline}
           </h2>
+          {siteConfig.avatar && (
+            <figure className="mt-10 max-w-sm">
+              <div className="relative aspect-square overflow-hidden rounded-2xl border-[2.5px] border-ink bg-ink shadow-[8px_8px_0_0_var(--color-mustard)]">
+                <Image
+                  src={siteConfig.avatar.src}
+                  alt={siteConfig.avatar.alt}
+                  fill
+                  sizes="(min-width: 1024px) 24rem, 90vw"
+                  className="object-cover"
+                />
+              </div>
+              <figcaption className="label mt-4 text-slate">
+                {siteConfig.name} · {siteConfig.brand}
+              </figcaption>
+            </figure>
+          )}
         </div>
         <div className="space-y-4 lg:col-span-7">
           {about.body.map((p) => (
