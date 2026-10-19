@@ -113,7 +113,8 @@ test.describe("world map", () => {
   test("region chips open details (mobile)", async ({ page, isMobile }) => {
     test.skip(!isMobile, "Mobile chips");
     await page.goto("/");
-    await page.getByRole("button", { name: /Research Woods/ }).click();
+    const chips = page.getByRole("navigation", { name: "World atlas quick regions" });
+    await chips.getByRole("button", { name: /Research Woods/ }).click();
     await page.getByRole("link", { name: /Explore research/ }).click();
     await expect(page).toHaveURL(/#research$/);
   });
@@ -130,7 +131,6 @@ test.describe("world map", () => {
     await page.goto("/");
     await expect(page.getByAltText(/Illustrated map of The Builder's Atlas/)).toBeVisible();
     await expect(page.locator("canvas")).toHaveCount(0);
-    await expect(page.getByText(/3D isn't available/).first()).toBeAttached();
   });
 
   test("3D scene starts when WebGL is available", async ({ page }) => {

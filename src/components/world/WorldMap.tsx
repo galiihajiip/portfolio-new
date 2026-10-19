@@ -1,20 +1,15 @@
 "use client";
 
-import { ArrowRight, Box, Compass, ImageIcon, Loader2, X } from "lucide-react";
+import { ArrowRight, Compass, Loader2, X } from "lucide-react";
 import dynamic from "next/dynamic";
 import { Component, type ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import { regions } from "@/content/regions";
-import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 import type { Region, RegionId } from "@/types/portfolio";
 import { IllustratedMap } from "./IllustratedMap";
 import type { Framing } from "./WorldScene";
 
 const WorldScene = dynamic(() => import("./WorldScene"), { ssr: false, loading: () => null });
-
-type Mode = "detecting" | "loading" | "3d" | "illustration";
-
-const PREF_KEY = "atlas:map-mode";
 
 function hasWebGL() {
   try {
@@ -25,34 +20,14 @@ function hasWebGL() {
   }
 }
 
-function readPref(): "3d" | "illustration" | null {
-  try {
-    const q = new URLSearchParams(window.location.search).get("map");
-    if (q === "2d" || q === "illustration") return "illustration";
-    if (q === "3d") return "3d";
-    const v = window.localStorage.getItem(PREF_KEY);
-    return v === "3d" || v === "illustration" ? v : null;
-  } catch {
-    return null;
-  }
-}
-
-function writePref(v: "3d" | "illustration") {
-  try {
-    window.localStorage.setItem(PREF_KEY, v);
-  } catch {
-    /* storage unavailable: preference simply isn't remembered */
-  }
-}
-
-/** Catches failures inside the WebGL scene (including a failed chunk import). */
+/** Catches failures inside the WebGL scene (including a failed chunk import or WebGL crash). */
 class SceneBoundary extends Component<{ onError: (reason: string) => void; children: ReactNode }, { failed: boolean }> {
   state = { failed: false };
   static getDerivedStateFromError() {
     return { failed: true };
   }
   componentDidCatch(error: Error) {
-    console.error("[WorldMap] 3D scene failed, showing the illustrated map instead.", error);
+    console.error("[WorldMap] 3D scene failed:", error);
     this.props.onError(error.message);
   }
   render() {
@@ -75,8 +50,8 @@ function useMediaQuery(query: string, fallback = false) {
 export function WorldMap({ profile }: { profile?: ReactNode }) {
   const [selected, setSelected] = useState<RegionId | null>(null);
   const [hovered, setHovered] = useState<RegionId | null>(null);
-  const [mode, setMode] = useState<Mode>("detecting");
-  const [notice, setNotice] = useState<string | null>(null);
+  const [sceneReady, setSceneReady] = useState(false);
+  const [sceneFailed, setSceneFailed] = useState(false);
   const [inView, setInView] = useState(true);
   const stageRef = useRef<HTMLDivElement>(null);
 
@@ -84,22 +59,15 @@ export function WorldMap({ profile }: { profile?: ReactNode }) {
   const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
   const [quality, setQuality] = useState<"high" | "low">("high");
 
-  // Decide between WebGL and the illustration once, on the client.
   useEffect(() => {
-    const pref = readPref();
     const lowPower =
       window.innerWidth < 768 ||
       (navigator.hardwareConcurrency ?? 8) <= 4 ||
       ((navigator as Navigator & { deviceMemory?: number }).deviceMemory ?? 8) <= 4;
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time client capability detection
     setQuality(lowPower ? "low" : "high");
-    if (!siteConfig.features.interactiveMap || pref === "illustration") {
-      setMode("illustration");
-    } else if (!hasWebGL()) {
-      setMode("illustration");
-      setNotice("3D isn't available in this browser, so you're seeing the illustrated map.");
-    } else {
-      setMode("loading");
+
+    if (!hasWebGL()) {
+      setSceneFailed(true);
     }
   }, []);
 
@@ -112,38 +80,21 @@ export function WorldMap({ profile }: { profile?: ReactNode }) {
     return () => io.disconnect();
   }, []);
 
-  // A slow device or a stalled chunk should not leave the visitor waiting.
-  useEffect(() => {
-    if (mode !== "loading") return;
-    const t = window.setTimeout(() => {
-      setMode((m) => (m === "loading" ? "illustration" : m));
-      setNotice("The 3D map took too long to load, so you're seeing the illustrated map.");
-    }, 15000);
-    return () => window.clearTimeout(t);
-  }, [mode]);
-
   const handleError = useCallback((reason: string) => {
-    console.warn("[WorldMap] Falling back to illustration:", reason);
-    setMode("illustration");
-    setNotice("The 3D map couldn't start on this device, so you're seeing the illustrated map.");
+    console.warn("[WorldMap] 3D scene error:", reason);
+    setSceneFailed(true);
   }, []);
-  const handleReady = useCallback(() => setMode((m) => (m === "loading" ? "3d" : m)), []);
 
-  const switchMode = (next: "3d" | "illustration") => {
-    writePref(next);
-    setNotice(null);
-    if (next === "3d" && !hasWebGL()) {
-      setNotice("3D isn't available in this browser.");
-      return;
-    }
-    setMode(next === "3d" ? "loading" : "illustration");
-  };
+  const handleReady = useCallback(() => {
+    setSceneReady(true);
+  }, []);
 
   const select = useCallback((id: RegionId | null) => setSelected((cur) => (cur === id ? cur : id)), []);
 
-  const framing: Framing = isDesktop ? { cx: 0.45, cy: 0.38, fitW: 0.58, fitH: 0.52 } : { cx: 0.5, cy: 0.52, fitW: 0.98, fitH: 0.92 };
-  const showCanvas = mode === "loading" || mode === "3d";
-  const showIllustration = mode !== "3d";
+  const framing: Framing = isDesktop
+    ? { cx: 0.45, cy: 0.38, fitW: 0.58, fitH: 0.52 }
+    : { cx: 0.5, cy: 0.5, fitW: 0.98, fitH: 0.92 };
+
   const selectedRegion = selected ? regions.find((r) => r.id === selected) : undefined;
 
   return (
@@ -151,22 +102,22 @@ export function WorldMap({ profile }: { profile?: ReactNode }) {
       {/* Map stage */}
       <div
         ref={stageRef}
-        className="relative h-[clamp(300px,74vw,540px)] lg:absolute lg:inset-0 lg:h-auto"
+        className="relative h-[clamp(320px,78vw,560px)] lg:absolute lg:inset-0 lg:h-auto"
         onPointerLeave={() => setHovered(null)}
       >
-        {showIllustration && (
-          <div className={cn("absolute inset-0 transition-opacity duration-500", mode === "loading" && "opacity-90")}>
+        {/* If WebGL is completely unsupported on device, render the illustrated map quietly as graceful fallback */}
+        {sceneFailed ? (
+          <div className="absolute inset-0">
             <IllustratedMap
               selected={selected}
               hovered={hovered}
               onSelect={select}
               onHover={setHovered}
-              interactive={mode === "illustration"}
+              interactive={true}
             />
           </div>
-        )}
-        {showCanvas && (
-          <div className={cn("absolute inset-0 transition-opacity duration-700", mode === "3d" ? "opacity-100" : "opacity-0")}>
+        ) : (
+          <div className={cn("absolute inset-0 transition-opacity duration-700", sceneReady ? "opacity-100" : "opacity-0")}>
             <SceneBoundary onError={handleError}>
               <WorldScene
                 selected={selected}
@@ -184,9 +135,10 @@ export function WorldMap({ profile }: { profile?: ReactNode }) {
             </SceneBoundary>
           </div>
         )}
-        {(mode === "loading" || mode === "detecting") && (
+
+        {!sceneReady && !sceneFailed && (
           <p className="chip absolute bottom-3 left-1/2 -translate-x-1/2 lg:bottom-auto lg:top-[calc(var(--header-h)+1.25rem)]" role="status">
-            <Loader2 className="size-3.5 animate-spin" aria-hidden /> Loading the 3D island…
+            <Loader2 className="size-3.5 animate-spin" aria-hidden /> Loading 3D island…
           </p>
         )}
       </div>
@@ -203,9 +155,6 @@ export function WorldMap({ profile }: { profile?: ReactNode }) {
           hovered={hovered}
           onSelect={select}
           onHover={setHovered}
-          mode={mode}
-          onSwitchMode={switchMode}
-          notice={notice}
         />
       </div>
 
@@ -213,8 +162,6 @@ export function WorldMap({ profile }: { profile?: ReactNode }) {
       <div className="container-atlas relative z-10 -mt-2 pb-4 lg:hidden">
         <RegionChips selected={selected} onSelect={select} />
         {selectedRegion && <RegionDetail region={selectedRegion} onClose={() => setSelected(null)} className="mt-3" />}
-        <MapModeToggle mode={mode} onSwitch={switchMode} className="mt-3" />
-        {notice && <p className="mt-2 text-sm text-cream">{notice}</p>}
       </div>
     </>
   );
@@ -227,17 +174,11 @@ function AtlasIndex({
   hovered,
   onSelect,
   onHover,
-  mode,
-  onSwitchMode,
-  notice,
 }: {
   selected: RegionId | null;
   hovered: RegionId | null;
   onSelect: (id: RegionId | null) => void;
   onHover: (id: RegionId | null) => void;
-  mode: Mode;
-  onSwitchMode: (m: "3d" | "illustration") => void;
-  notice: string | null;
 }) {
   return (
     <nav aria-label="World atlas regions" className="panel panel-lg p-4">
@@ -280,42 +221,13 @@ function AtlasIndex({
           );
         })}
       </ul>
-      <MapModeToggle mode={mode} onSwitch={onSwitchMode} className="mt-4 border-t-2 border-dashed border-ink/15 pt-3" />
-      {notice && <p className="mt-2 text-xs text-ink-soft">{notice}</p>}
     </nav>
-  );
-}
-
-function MapModeToggle({ mode, onSwitch, className }: { mode: Mode; onSwitch: (m: "3d" | "illustration") => void; className?: string }) {
-  const is3d = mode === "3d" || mode === "loading";
-  return (
-    <div className={cn("flex items-center justify-between gap-3", className)}>
-      <span className="label text-[0.62rem] text-cream lg:text-slate">Map view</span>
-      <div role="group" aria-label="Map view" className="inline-flex rounded-full border-2 border-ink bg-paper p-0.5">
-        <button
-          type="button"
-          aria-pressed={is3d}
-          onClick={() => onSwitch("3d")}
-          className={cn("flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold", is3d && "bg-ink text-cream")}
-        >
-          <Box className="size-3.5" aria-hidden /> 3D
-        </button>
-        <button
-          type="button"
-          aria-pressed={!is3d}
-          onClick={() => onSwitch("illustration")}
-          className={cn("flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold", !is3d && "bg-ink text-cream")}
-        >
-          <ImageIcon className="size-3.5" aria-hidden /> Illustrated
-        </button>
-      </div>
-    </div>
   );
 }
 
 function RegionChips({ selected, onSelect }: { selected: RegionId | null; onSelect: (id: RegionId | null) => void }) {
   return (
-    <nav aria-label="World atlas regions">
+    <nav aria-label="World atlas quick regions">
       <ul className="no-scrollbar -mx-[var(--gutter)] flex snap-x gap-2 overflow-x-auto px-[var(--gutter)] py-2">
         {regions.map((r) => {
           const isSel = selected === r.id;
