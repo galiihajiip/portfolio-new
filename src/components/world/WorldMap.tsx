@@ -64,6 +64,7 @@ export function WorldMap({ profile }: { profile?: ReactNode }) {
       window.innerWidth < 768 ||
       (navigator.hardwareConcurrency ?? 8) <= 4 ||
       ((navigator as Navigator & { deviceMemory?: number }).deviceMemory ?? 8) <= 4;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time client capability detection
     setQuality(lowPower ? "low" : "high");
 
     if (!hasWebGL()) {

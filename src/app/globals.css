@@ -493,9 +493,13 @@
 }
 
 /* 3D Character speech bubble */
-.character-bubble {
-  position: absolute;
+/* Positioned every frame by the 3D projector: never transition or override its transform. */
+.character-bubble-anchor {
   z-index: 10;
+  transition: opacity 500ms ease;
+}
+.character-bubble {
+  position: relative;
   display: inline-flex;
   align-items: center;
   padding: 0.4rem 0.9rem;
@@ -503,11 +507,12 @@
   border: 2px solid var(--color-ink);
   border-radius: 1rem;
   box-shadow: 3px 3px 0 0 var(--color-ink);
-  transition: transform var(--dur-fast) var(--ease-spring), box-shadow var(--dur-fast) linear, opacity 500ms ease;
+  transform-origin: 50% 100%;
+  transition: transform var(--dur-fast) var(--ease-spring), box-shadow var(--dur-fast) linear;
   white-space: nowrap;
 }
 .character-bubble:hover {
-  transform: translate(-50%, calc(-100% - 14px)) scale(1.05) !important;
+  transform: scale(1.05);
   background: var(--color-cream);
   box-shadow: 4px 5px 0 0 var(--color-ink);
 }

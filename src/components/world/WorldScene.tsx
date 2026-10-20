@@ -239,16 +239,14 @@ export default function WorldScene(props: WorldSceneProps) {
         })}
 
         {/* Welcoming Speech Bubble from the 3D Character */}
-        <div
-          ref={greetingRef}
-          role="status"
-          onClick={cycleGreeting}
-          title="Click to talk!"
-          className="character-bubble pointer-events-auto absolute left-0 top-0 opacity-0 cursor-pointer select-none"
-        >
-          <div className="flex items-center gap-1.5 font-display text-xs font-bold text-ink sm:text-[0.82rem]">
-            <span className="inline-block size-2 shrink-0 animate-ping rounded-full bg-coral" />
-            <span>{greetings[greetingTextIndex]}</span>
+        {/* Outer element is positioned every frame; hover effects live on the inner
+            bubble so they never overwrite the tracked transform. */}
+        <div ref={greetingRef} className="character-bubble-anchor absolute left-0 top-0 opacity-0">
+          <div role="status" onClick={cycleGreeting} title="Click to talk!" className="character-bubble pointer-events-auto cursor-pointer select-none">
+            <div className="flex items-center gap-1.5 font-display text-xs font-bold text-ink sm:text-[0.82rem]">
+              <span className="inline-block size-2 shrink-0 animate-ping rounded-full bg-coral" />
+              <span>{greetings[greetingTextIndex]}</span>
+            </div>
           </div>
         </div>
       </div>
