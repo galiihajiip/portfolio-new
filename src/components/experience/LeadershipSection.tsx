@@ -159,6 +159,7 @@ export function LeadershipSection() {
                           {r.kind !== "organisation" && <span className="label ml-2 text-teal">{organisationKindLabels[r.kind]}</span>}
                         </span>
                         <span className="font-mono text-xs text-slate">{formatRange(r.start, r.end)}</span>
+                        {r.scope && <span className="w-full text-sm text-ink-soft">{r.scope}</span>}
                         <DraftNote entry={{ draft: !!r.todo, todo: r.todo }} className="mt-1 w-full" />
                       </li>
                     ))}

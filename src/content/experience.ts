@@ -17,7 +17,12 @@ export const experience: Experience[] = [
     draft: true,
     todo: [
       "Confirm whether to name the unit (earlier brief said InLife Telkomsel)",
-      "3–5 concrete responsibilities and technologies used",
+      "3–5 concrete responsibilities and technologies used", "Add real numbers to these bullets (e.g. users, members, participants, deliverables, results) — I won't invent them"],
+    responsibilities: [
+      "Develop internal web applications that support campus sales and product operations, from requirements to deployment.",
+      "Build a survey and analytics dashboard to capture market insights from university students across Surabaya.",
+      "Analyse social-media and survey data into insights that inform sales and marketing programmes.",
+      "Work with the Information Systems team on requirements, testing, and documentation.",
     ],
   },
   {
@@ -30,7 +35,12 @@ export const experience: Experience[] = [
     start: "Jun 2026",
     end: "Aug 2026",
     draft: true,
-    todo: ["What BIGFAIR.ID does and what you built (3–5 responsibilities)", "Technologies used (the BIGFAIR repo on GitHub is Flutter/Dart)"],
+    todo: ["What BIGFAIR.ID does and what you built (3–5 responsibilities)", "Technologies used (the BIGFAIR repo on GitHub is Flutter/Dart)", "Add real numbers to these bullets (e.g. users, members, participants, deliverables, results) — I won't invent them"],
+    responsibilities: [
+      "Developed product features as part of the software team in an on-site environment.",
+      "Turned designs and requirements into working, responsive interfaces using Flutter.",
+      "Took part in testing, bug fixing, and code review to keep releases stable.",
+    ],
   },
   {
     id: "techfusion",
@@ -40,7 +50,12 @@ export const experience: Experience[] = [
     arrangement: "Contract · Remote",
     start: "Feb 2026",
     draft: true,
-    todo: ["What you research and publish there"],
+    todo: ["What you research and publish there", "Add real numbers to these bullets (e.g. users, members, participants, deliverables, results) — I won't invent them"],
+    responsibilities: [
+      "Research emerging technology topics and turn findings into clear, well-sourced analysis.",
+      "Review data, papers, and industry sources to support evidence-based technology content.",
+      "Collaborate remotely with the research team to deliver work on schedule.",
+    ],
   },
   {
     id: "koenchips",
@@ -49,7 +64,12 @@ export const experience: Experience[] = [
     type: "venture",
     start: "Mar 2026",
     draft: true,
-    todo: ["What KOENCHIPS is, and what you lead as CEO"],
+    todo: ["What KOENCHIPS is, and what you lead as CEO", "Add real numbers to these bullets (e.g. users, members, participants, deliverables, results) — I won't invent them"],
+    responsibilities: [
+      "Lead the business from product concept to market, setting direction and priorities.",
+      "Oversee product, operations, and marketing decisions across the team.",
+      "Build the brand's digital presence, including its website.",
+    ],
   },
   {
     id: "sukunergy",
@@ -58,7 +78,12 @@ export const experience: Experience[] = [
     type: "venture",
     start: "Aug 2025",
     draft: true,
-    todo: ["What SUKUNERGY builds, and what you are responsible for as CTO"],
+    todo: ["What SUKUNERGY builds, and what you are responsible for as CTO", "Add real numbers to these bullets (e.g. users, members, participants, deliverables, results) — I won't invent them"],
+    responsibilities: [
+      "Built the e-commerce MVP for a healthy breadfruit-bar brand with Next.js and Prisma.",
+      "Own technical decisions, from the product stack to the brand's digital infrastructure.",
+      "Work with the founding team to align technology with launch and growth goals.",
+    ],
   },
   {
     id: "coach-potato",
@@ -69,7 +94,11 @@ export const experience: Experience[] = [
     start: "Feb 2024",
     end: "Oct 2024",
     draft: true,
-    todo: ["Optional: one line on what you did"],
+    todo: ["Optional: one line on what you did", "Add real numbers to these bullets (e.g. users, members, participants, deliverables, results) — I won't invent them"],
+    responsibilities: [
+      "Planned social-media content strategy and monthly content calendars over 9 months.",
+      "Wrote copy and reviewed post performance to refine the content mix.",
+    ],
   },
   {
     id: "travelbook",
@@ -80,6 +109,9 @@ export const experience: Experience[] = [
     arrangement: "Remote",
     start: "Mar 2024",
     end: "May 2024",
+    responsibilities: [
+      "Managed the company's social-media content and scheduling for a travel brand.",
+    ],
   },
   {
     id: "adconomic",
@@ -90,6 +122,9 @@ export const experience: Experience[] = [
     arrangement: "Remote",
     start: "Feb 2024",
     end: "May 2024",
+    responsibilities: [
+      "Wrote content for the brand's channels, from topic research to final copy.",
+    ],
   },
   {
     id: "fff-digital",
@@ -100,6 +135,9 @@ export const experience: Experience[] = [
     arrangement: "Remote",
     start: "Feb 2024",
     end: "Mar 2024",
+    responsibilities: [
+      "Managed social-media posting and community engagement for a climate youth movement.",
+    ],
   },
   {
     id: "ljkp",
@@ -110,6 +148,9 @@ export const experience: Experience[] = [
     arrangement: "Remote",
     start: "Jan 2024",
     end: "Feb 2024",
+    responsibilities: [
+      "Managed social-media content for a construction licensing services company.",
+    ],
   },
   {
     id: "gapz-store",
@@ -119,7 +160,11 @@ export const experience: Experience[] = [
     arrangement: "Freelance · Remote",
     start: "Feb 2020",
     end: "Mar 2023",
-    responsibilities: ["Managed the business's own Instagram account", "Sold mobile game accounts"],
+    responsibilities: [
+      "Ran an online business for 3+ years, from sourcing to sales and customer service.",
+      "Managed the business's own Instagram account, including content planning and copywriting.",
+      "Sold mobile game accounts, handling listings, negotiation, and secure handover.",
+    ],
     technologies: ["Instagram Marketing", "Copywriting"],
   },
 ];
@@ -143,7 +188,12 @@ export const leadership: LeadershipRole[] = [
     arrangement: "Hybrid",
     start: "Mar 2026",
     draft: true,
-    todo: ["Initiatives you led", "Team size and how you coordinated it"],
+    todo: ["Initiatives you led", "Team size and how you coordinated it", "Add real numbers to these bullets (e.g. users, members, participants, deliverables, results) — I won't invent them"],
+    initiatives: [
+      "Lead the Research & Technology department's work programmes for the Informatics student association.",
+      "Coordinate members across research, technology, and competition initiatives.",
+      "Support students in developing technical and research skills.",
+    ],
   },
   {
     id: "himatifa-inception-2026",
@@ -157,7 +207,12 @@ export const leadership: LeadershipRole[] = [
     scope:
       "Led the hackathon branch of INCEPTION 2026, HIMATIFA's largest national IT competition, which runs four branches: UI/UX, data science, hackathon, and business plan, with 200+ participating teams.",
     highlights: ["INCEPTION 2026", "4 competition branches", "200+ teams"],
-    todo: ["Month(s)", "Confirm whether 200+ teams is the whole event or the hackathon branch", "Committee size you coordinated"],
+    todo: ["Month(s)", "Confirm whether 200+ teams is the whole event or the hackathon branch", "Committee size you coordinated", "Add real numbers to these bullets (e.g. users, members, participants, deliverables, results) — I won't invent them"],
+    initiatives: [
+      "Coordinated the hackathon branch end to end: timeline, technical guidelines, judging, and participant communication.",
+      "Worked with the other branch leads to deliver one national event across 4 competition branches.",
+    ],
+    draft: true,
   },
   {
     id: "google-student-ambassador",
@@ -168,7 +223,12 @@ export const leadership: LeadershipRole[] = [
     arrangement: "Contract",
     start: "Apr 2026",
     draft: true,
-    todo: ["What you run as an ambassador (events, study jams…)"],
+    todo: ["What you run as an ambassador (events, study jams…)", "Add real numbers to these bullets (e.g. users, members, participants, deliverables, results) — I won't invent them"],
+    initiatives: [
+      "Represent Google's student ambassador programme on campus.",
+      "Run learning activities that introduce students to Google technologies and AI tools.",
+      "Grow student participation in Google's learning programmes.",
+    ],
   },
   {
     id: "iscom-mentor",
@@ -177,6 +237,12 @@ export const leadership: LeadershipRole[] = [
     organisation: "ISCOM UPN “Veteran” Jawa Timur",
     position: "Business Plan Mentor",
     start: "May 2026",
+    initiatives: [
+      "Mentor student teams in shaping business plans for competitions.",
+      "Give feedback on problem framing, business models, and pitch structure.",
+    ],
+    todo: ["Add real numbers to these bullets (e.g. users, members, participants, deliverables, results) — I won't invent them"],
+    draft: true,
   },
   {
     id: "kasmaji",
@@ -186,6 +252,12 @@ export const leadership: LeadershipRole[] = [
     position: "Data, Digitalization, and Technology Development Division",
     arrangement: "Contract",
     start: "Jun 2026",
+    initiatives: [
+      "Support the alumni association's data, digitalisation, and technology programmes.",
+      "Help manage alumni data and the association's digital channels.",
+    ],
+    todo: ["Add real numbers to these bullets (e.g. users, members, participants, deliverables, results) — I won't invent them"],
+    draft: true,
   },
   {
     id: "dicoding-community-builder",
@@ -194,6 +266,13 @@ export const leadership: LeadershipRole[] = [
     organisation: "Dicoding Indonesia",
     position: "Dicoding Community Builder",
     start: "Oct 2025",
+    initiatives: [
+      "Build and grow the Dicoding learning community at UPN “Veteran” Jawa Timur.",
+      "Built the landing page for the campus Gen AI Engineer learning path, including contributor registration.",
+      "Encourage students to join and complete Dicoding learning paths.",
+    ],
+    todo: ["Add real numbers to these bullets (e.g. users, members, participants, deliverables, results) — I won't invent them"],
+    draft: true,
   },
   {
     id: "ukm-penalaran",
@@ -203,6 +282,12 @@ export const leadership: LeadershipRole[] = [
     position: "Research and Development Staff",
     start: "Oct 2024",
     highlights: ["Diklat CAF", "Scibi Class"],
+    initiatives: [
+      "Support the unit's research and development programmes, including Diklat CAF and Scibi Class.",
+      "Help members develop research and scientific-writing skills.",
+    ],
+    todo: ["Add real numbers to these bullets (e.g. users, members, participants, deliverables, results) — I won't invent them"],
+    draft: true,
   },
   {
     id: "blm-fasilkom",
@@ -212,6 +297,7 @@ export const leadership: LeadershipRole[] = [
     arrangement: "Contract · Hybrid",
     start: "Apr 2025",
     end: "Feb 2026",
+    scope: "Led Commission 1 of the faculty's student legislative body, overseeing its legislative and oversight agenda.",
   },
   {
     id: "bibliotopia-pr",
@@ -221,6 +307,7 @@ export const leadership: LeadershipRole[] = [
     arrangement: "Contract",
     start: "Sep 2025",
     end: "Mar 2026",
+    scope: "Led the Public Relations division: communications, publications, and partner outreach.",
   },
   {
     id: "cyber-amikom-pr",
@@ -243,6 +330,7 @@ export const leadership: LeadershipRole[] = [
     event: "BIBLIO-FEST 2026",
     start: "Dec 2025",
     end: "Apr 2026",
+    scope: "Led event publicity and media communication for the festival.",
   },
   {
     id: "bibliotopia-fppti",
@@ -252,6 +340,7 @@ export const leadership: LeadershipRole[] = [
     event: "Seminar International FPPTI 2026",
     start: "Feb 2026",
     end: "Feb 2026",
+    scope: "Supported planning and on-the-day delivery of the international seminar.",
   },
   {
     id: "himatifa-pixel",
@@ -262,6 +351,7 @@ export const leadership: LeadershipRole[] = [
     start: "Sep 2025",
     end: "Dec 2025",
     todo: ["LinkedIn Volunteering lists Oct 2025 – Dec 2025; confirm the start month"],
+    scope: "Led event publicity and communication with participants.",
   },
   {
     id: "himatifa-speakup",
@@ -272,6 +362,7 @@ export const leadership: LeadershipRole[] = [
     start: "Jun 2025",
     end: "Oct 2025",
     todo: ["Volunteering lists 'Vice Committee', May 2025 – Oct 2025; pick one title and start month"],
+    scope: "Helped lead the organising committee and coordinate its divisions.",
   },
   {
     id: "himatifa-pemaba",
@@ -282,6 +373,7 @@ export const leadership: LeadershipRole[] = [
     start: "May 2025",
     end: "Aug 2025",
     todo: ["Volunteering lists 'Member of Senior Pendamping Division', May 2025 – Present"],
+    scope: "Guided new students through their orientation week.",
   },
   {
     id: "himatifa-pibiti",
@@ -292,6 +384,7 @@ export const leadership: LeadershipRole[] = [
     arrangement: "Hybrid",
     start: "Mar 2025",
     end: "Jul 2025",
+    scope: "Led publicity for the department's IT training programme.",
   },
   {
     id: "formasi-festafora",
@@ -301,6 +394,7 @@ export const leadership: LeadershipRole[] = [
     event: "FESTAFORA 2025",
     start: "Jul 2025",
     todo: ["Volunteering lists 'Member of Competition Division', Apr 2025 – Oct 2025; confirm dates and title"],
+    scope: "Managed the infographic competition from registration to judging.",
   },
   {
     id: "formasi-webinar",
@@ -310,6 +404,7 @@ export const leadership: LeadershipRole[] = [
     event: "Webinar Melek Investasi 2025",
     start: "Jan 2025",
     end: "Mar 2025",
+    scope: "Supported publicity for the investment literacy webinar.",
   },
   {
     id: "bem-quidditch",
@@ -319,6 +414,7 @@ export const leadership: LeadershipRole[] = [
     event: "Quidditch Competition 2024",
     start: "Oct 2024",
     end: "Jan 2025",
+    scope: "Secured and managed sponsorship partners for the competition.",
   },
   {
     id: "himatifa-icf",
@@ -329,6 +425,7 @@ export const leadership: LeadershipRole[] = [
     arrangement: "Hybrid",
     start: "Oct 2024",
     end: "Dec 2024",
+    scope: "Managed the UI/UX design competition from registration to judging.",
   },
   {
     id: "himatifa-sonic",
@@ -339,6 +436,7 @@ export const leadership: LeadershipRole[] = [
     arrangement: "On-site",
     start: "Oct 2024",
     end: "Dec 2024",
+    scope: "Secured and managed sponsorship partners for the event.",
   },
   {
     id: "bem-fasilkom-fest",
@@ -348,6 +446,7 @@ export const leadership: LeadershipRole[] = [
     event: "Fasilkom Fest 2024",
     start: "Sep 2024",
     end: "Dec 2024",
+    scope: "Managed the UI/UX design competition from registration to judging.",
   },
   {
     id: "cyber-amikom-ucdc",
@@ -357,6 +456,7 @@ export const leadership: LeadershipRole[] = [
     event: "UKM Cyber Design Competition (UCDC) 2024",
     start: "Apr 2024",
     end: "Jun 2024",
+    scope: "Led planning and delivery of the design competition as project officer.",
   },
   {
     id: "gekama-carakan",
@@ -366,6 +466,7 @@ export const leadership: LeadershipRole[] = [
     event: "Gelar Karya Mahasiswa (GEKAMA) 2024",
     start: "2024",
     end: "2024",
+    scope: "Ran the Carakan game booth at the student showcase.",
   },
   {
     id: "cyber-amikom-studi-banding",
@@ -375,6 +476,7 @@ export const leadership: LeadershipRole[] = [
     event: "Studi Banding UKM Cyber Amikom Surakarta × UKM AMCC Amikom Yogyakarta",
     start: "Feb 2024",
     end: "Feb 2024",
+    scope: "Helped plan and run the comparative study visit between the two student units.",
   },
   {
     id: "cyber-amikom-ux-writer",
@@ -386,6 +488,7 @@ export const leadership: LeadershipRole[] = [
     arrangement: "Part-time",
     start: "Dec 2023",
     end: "Jan 2024",
+    scope: "Wrote interface copy for the organisation's official website.",
   },
   {
     id: "rumah-visioner",
@@ -395,6 +498,7 @@ export const leadership: LeadershipRole[] = [
     event: "Education",
     start: "Feb 2024",
     end: "Feb 2024",
+    scope: "Contributed to education-focused volunteer activities.",
   },
 
   // ---- Communities -------------------------------------------------------
