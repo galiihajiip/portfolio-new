@@ -56,6 +56,15 @@ export const education: Education[] = [
  * mentoring programmes, club memberships, or study visits.
  */
 export const programmes: Programme[] = [
+  {
+    id: "asah-dicoding",
+    title: "AI Full Stack Developer",
+    organisation: "Asah led by Dicoding",
+    kind: "training",
+    arrangement: "Remote · One-semester intensive independent study",
+    start: "Aug 2026",
+    highlights: ["Independent study bootcamp"],
+  },
   { id: "ibm-skillsbuild", title: "AI Engineer Cohort", organisation: "Pijak in collaboration with IBM SkillsBuild", kind: "training", arrangement: "Contract", start: "Dec 2025" },
   { id: "idcamp", title: "Machine Learning Engineer Trainee", organisation: "Indosat Ooredoo Hutchison Digital Camp", kind: "training", start: "Jul 2025" },
   { id: "dbs-coding-camp", title: "Machine Learning Engineer Trainee", organisation: "Coding Camp powered by DBS Foundation", kind: "training", start: "Jan 2025" },
@@ -66,6 +75,28 @@ export const programmes: Programme[] = [
   { id: "aiesec-delegate", title: "Delegate", organisation: "AIESEC in Surabaya", kind: "membership", start: "Aug 2025", highlights: ["Impact Circle 2.0", "Youth Today"] },
   { id: "180dc-its", title: "Consulting Mentee", organisation: "180 Degrees Consulting — Institut Teknologi Sepuluh Nopember", kind: "mentoring", start: "Aug 2025", end: "Dec 2025", highlights: ["Membership Program", "Networking Space"] },
   { id: "studentsxceos-mentee", title: "Tech & Startup Mentee", organisation: "StudentsxCEOs East Java", kind: "mentoring", arrangement: "Part-time · Remote", start: "Jul 2025", end: "Aug 2025" },
+  {
+    id: "bmkg-juanda",
+    title: "Company Visit",
+    organisation: "BMKG Stasiun Meteorologi Kelas I Juanda",
+    kind: "visit",
+    location: "Sidoarjo, East Java",
+    start: "2025",
+    end: "2025",
+    highlights: ["Organised by BEM Fasilkom UPNVJT 2025"],
+    todo: ["Month of the visit"],
+  },
+  {
+    id: "idx-jatim",
+    title: "Company Visit",
+    organisation: "Bursa Efek Indonesia (IDX) Kantor Perwakilan Jawa Timur",
+    kind: "visit",
+    location: "Surabaya, East Java",
+    start: "2025",
+    end: "2025",
+    highlights: ["Organised by BEM Fasilkom UPNVJT 2025"],
+    todo: ["Month of the visit"],
+  },
   { id: "telkom-landmark", title: "Study Excursion", organisation: "PT Telkom Landmark Tower", kind: "visit", location: "Surabaya, East Java", start: "Nov 2024", end: "Jan 2026", highlights: ["Certificate"] },
   { id: "petrokimia", title: "Study Excursion", organisation: "PT Petrokimia Gresik", kind: "visit", start: "Nov 2024", end: "Nov 2024", highlights: ["Certificate"] },
 ];
