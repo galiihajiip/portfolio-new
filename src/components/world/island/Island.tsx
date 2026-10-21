@@ -254,7 +254,7 @@ function FloatingBoat({ position, rotation, animate }: { position: [number, numb
 /** Landmark per region; `pin` is the label anchor relative to the plateau top. */
 const landmarkFor: Record<RegionId, { Component: ComponentType<{ animate: boolean }>; offset: Vec2; pin: [number, number, number] }> = {
   "systems-highlands": { Component: Observatory, offset: [0, 0], pin: [0, 1.9, 0] },
-  "milestone-summit": { Component: Lighthouse, offset: [0, 0], pin: [0, 2.5, 0] },
+  "milestone-summit": { Component: Lighthouse, offset: [0, 0], pin: [0, 2.25, 0] },
   "research-woods": { Component: Cabin, offset: [0.3, -0.1], pin: [0.3, 1.55, -0.1] },
   "collaboration-grove": { Component: Amphitheatre, offset: [0, 0], pin: [-0.3, 1.0, -0.6] },
   workshop: { Component: Forge, offset: [0, 0], pin: [0.5, 1.6, 0.4] },

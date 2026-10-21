@@ -3,7 +3,7 @@ import { DraftNote } from "@/components/ui/DraftNote";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SmartLink } from "@/components/ui/SmartLink";
 import { leadership, organisationKindLabels } from "@/content/experience";
-import { chapters } from "@/content/stories";
+import { chapters, leadershipCopy } from "@/content/stories";
 import { talks } from "@/content/talks";
 import { formatRange } from "@/lib/utils";
 import type { LeadershipRole } from "@/types/portfolio";
@@ -71,6 +71,8 @@ function byOrganisation(list: LeadershipRole[]) {
 export function LeadershipSection() {
   const c = chapters.together;
   const featured = leadership.filter((l) => l.kind === "leadership" && l.featured);
+  const current = featured.filter((l) => !l.end);
+  const past = featured.filter((l) => l.end);
   const log = leadership.filter((l) => (l.kind === "leadership" && !l.featured) || l.kind === "organisation" || l.kind === "volunteer");
   const communities = leadership.filter((l) => l.kind === "community");
 
@@ -79,18 +81,30 @@ export function LeadershipSection() {
       <div className="container-atlas">
         <SectionHeading chapter={c} id="leadership-title" />
 
-        <ul className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {featured.map((l) => (
-            <li key={l.id}>
-              <LeadershipCard l={l} />
-            </li>
+        {[
+          { title: leadershipCopy.current, roles: current },
+          { title: leadershipCopy.past, roles: past },
+        ]
+          .filter((g) => g.roles.length > 0)
+          .map((g) => (
+            <div key={g.title} className="mt-14">
+              <h3 className="label mb-5 flex items-center gap-2 text-slate">
+                <Users className="size-4" aria-hidden /> {g.title}
+              </h3>
+              <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {g.roles.map((l) => (
+                  <li key={l.id}>
+                    <LeadershipCard l={l} />
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
 
         {talks.length > 0 && (
           <div className="mt-14">
             <h3 className="label mb-5 flex items-center gap-2 text-slate">
-              <Mic className="size-4" aria-hidden /> Speaking & knowledge sharing
+              <Mic className="size-4" aria-hidden /> {leadershipCopy.speaking}
             </h3>
             <ul className="grid gap-5 md:grid-cols-2">
               {talks.map((t) => (
@@ -127,7 +141,7 @@ export function LeadershipSection() {
           <details className="group mt-12 rounded-2xl border-[2.5px] border-ink bg-paper shadow-[4px_4px_0_0_var(--color-ink)]">
             <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 sm:p-6">
               <span>
-                <span className="label block text-slate">Organisation log</span>
+                <span className="label block text-slate">{leadershipCopy.log}</span>
                 <span className="mt-1 block font-display text-xl font-bold">Committees, events & volunteering ({log.length})</span>
               </span>
               <ChevronDown className="size-5 shrink-0 transition-transform group-open:rotate-180" aria-hidden />
@@ -157,7 +171,7 @@ export function LeadershipSection() {
 
         {communities.length > 0 && (
           <div className="mt-12">
-            <h3 className="label mb-4 text-slate">Communities I learn with</h3>
+            <h3 className="label mb-4 text-slate">{leadershipCopy.communities}</h3>
             <ul className="flex flex-wrap gap-2">
               {communities.map((m) => (
                 <li key={m.id} className="rounded-xl border-2 border-ink bg-paper px-3 py-2 text-sm">

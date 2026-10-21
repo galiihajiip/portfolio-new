@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { type KeyboardEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { filterProjects } from "@/content/projects";
+import { projectsCopy } from "@/content/stories";
 import { indexFromScroll, maxIndex, rangeLabel, scrollForIndex, type TrackMetrics, targetIndex } from "@/lib/carousel";
 import type { Project } from "@/types/portfolio";
 import { ProjectCard } from "./ProjectCard";
@@ -97,9 +98,9 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
     <div>
       <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <h3 className="display-md">Things I&apos;ve brought to life.</h3>
+          <h3 className="display-md">{projectsCopy.title}</h3>
           <p className="mt-2 max-w-xl text-ink-soft">
-            Different questions. Different challenges. Each one an opportunity to build something meaningful.
+            {projectsCopy.intro}
           </p>
         </div>
         <div className="flex items-center gap-4">
@@ -146,9 +147,9 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
       </div>
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-4">
-        <p className="text-sm text-slate">Swipe, scroll, or use the arrows. Every card opens a full case study.</p>
+        <p className="text-sm text-slate">{projectsCopy.helper}</p>
         <Link href="/projects" className="btn btn-dark">
-          View all projects <ArrowRight className="size-4" aria-hidden />
+          {projectsCopy.cta} <ArrowRight className="size-4" aria-hidden />
         </Link>
       </div>
     </div>

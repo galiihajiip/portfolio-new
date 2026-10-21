@@ -93,7 +93,7 @@ export function WorldMap({ profile }: { profile?: ReactNode }) {
   const select = useCallback((id: RegionId | null) => setSelected((cur) => (cur === id ? cur : id)), []);
 
   const framing: Framing = isDesktop
-    ? { cx: 0.45, cy: 0.38, fitW: 0.58, fitH: 0.52 }
+    ? { cx: 0.45, cy: 0.4, fitW: 0.58, fitH: 0.5 }
     : { cx: 0.5, cy: 0.5, fitW: 0.98, fitH: 0.92 };
 
   const selectedRegion = selected ? regions.find((r) => r.id === selected) : undefined;
@@ -132,6 +132,7 @@ export function WorldMap({ profile }: { profile?: ReactNode }) {
                 animate={!reducedMotion}
                 active={inView}
                 compactLabels={!isDesktop}
+                safeTop={isDesktop ? 84 : 8}
               />
             </SceneBoundary>
           </div>

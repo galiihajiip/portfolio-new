@@ -9,10 +9,10 @@ export function SiteFooter() {
       <div className="container-atlas grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
         <div className="space-y-3">
           <p className="font-display text-2xl font-bold">
-            GAPZ<span className="text-mustard">.</span> <span className="text-cream/70">{siteConfig.title}</span>
+            GAPZ<span className="text-mustard">.</span> <span className="text-cream/70">· {siteConfig.title}</span>
           </p>
           <p className="max-w-sm text-sm text-cream/70">
-            {siteConfig.name} · {siteConfig.tagline} · {siteConfig.institution}
+            {siteConfig.name} · {siteConfig.footerLine} · {siteConfig.institution}
           </p>
         </div>
         <nav aria-label="Footer">

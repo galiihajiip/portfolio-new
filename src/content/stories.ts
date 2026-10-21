@@ -6,21 +6,19 @@ export const chapters = {
     id: "story",
     number: "01",
     label: "The beginning",
-    headline: "Every journey starts somewhere.",
+    headline: "A different way to approach problems.",
     body: [
-      "Before I learned how to build systems, I learned to ask questions.",
-      "Coming from a social-science background into Informatics changed how I approach technology. I became interested not only in how things work, but also in why they matter, who they serve, and what happens when an idea becomes real.",
-      "That curiosity still shapes the work I pursue today.",
+      "I moved from a social-science background into Informatics. That transition shaped how I approach technology: understand the context, identify the problem, and consider who the solution is meant to serve.",
+      "It is a perspective I bring to the work I choose and the way I develop ideas.",
     ],
   },
   build: {
     id: "projects",
     number: "02",
     label: "What I build",
-    headline: "Ideas are better when they become real.",
+    headline: "From ideas to working systems.",
     body: [
-      "Every project begins with a question. The interesting part is finding a way to turn it into something that works.",
-      "From software and AI-driven ideas to research and technical experiments, I enjoy moving between understanding a problem, testing an approach, and building a solution.",
+      "My work spans software, AI, data, and applied technology. Each project is an opportunity to solve a specific problem, explore an approach, and develop something that can be evaluated.",
     ],
     region: "building-grounds",
   },
@@ -30,8 +28,8 @@ export const chapters = {
     label: "Applying what I learn",
     headline: "Where ideas meet real-world constraints.",
     body: [
-      "Building in practice means working with real people, real limitations, and responsibilities beyond the technical solution.",
-      "Each professional and collaborative experience adds a new perspective on how useful systems are built, tested, and improved.",
+      "Professional roles put technical skills into practice through team responsibilities, shared priorities, and real working environments.",
+      "The entries below document the roles I have held and the contributions I have made.",
     ],
     region: "systems-highlands",
   },
@@ -39,9 +37,10 @@ export const chapters = {
     id: "research",
     number: "03b",
     label: "Research",
-    headline: "Questions, followed through.",
+    headline: "Research, followed through.",
     body: [
-      "Research is where I slow down: framing a question carefully, choosing a method that can answer it, and letting the evidence decide.",
+      "Research gives structure to curiosity. It requires a clear question, an appropriate method, and conclusions grounded in evidence.",
+      "This collection brings together presented work, ongoing studies, and other research contributions, with each project's status clearly identified.",
     ],
     region: "research-woods",
   },
@@ -49,9 +48,10 @@ export const chapters = {
     id: "leadership",
     number: "04",
     label: "Building with others",
-    headline: "The best work is rarely built alone.",
+    headline: "Good work takes a team.",
     body: [
-      "Technical skill is only part of the work. Communication, coordination, leadership, and shared responsibility determine how ideas develop when different people work toward a common goal.",
+      "Beyond individual projects, I contribute through leadership, mentoring, event delivery, and community initiatives.",
+      "These experiences reflect how I work with others, share knowledge, and help turn collective plans into action.",
     ],
     region: "collaboration-grove",
   },
@@ -59,9 +59,10 @@ export const chapters = {
     id: "achievements",
     number: "05",
     label: "Milestones",
-    headline: "Every milestone marks a new beginning.",
+    headline: "Progress, put to the test.",
     body: [
-      "Competitions, recognitions, and challenging projects have pushed me to test what I can do under new constraints. I value them as evidence of effort and as motivation to keep improving.",
+      "Competitions, scholarships, and other recognitions mark the challenges I have taken on and the results achieved along the way.",
+      "Each milestone records the outcome and the organisation behind it.",
     ],
     region: "milestone-summit",
   },
@@ -69,9 +70,9 @@ export const chapters = {
     id: "toolkit",
     number: "06",
     label: "Continued learning",
-    headline: "The toolkit keeps growing.",
+    headline: "The toolkit behind the work.",
     body: [
-      "Every new challenge expands the knowledge, methods, and tools I bring to the next one. Learning is an ongoing part of the building process.",
+      "My education and training provide the foundation for the projects I take on. Here are the academic experiences, credentials, and capabilities that support my work.",
     ],
     region: "workshop",
   },
@@ -79,45 +80,72 @@ export const chapters = {
     id: "contact",
     number: "07",
     label: "The next destination",
-    headline: "There is still more to build.",
+    headline: "The map keeps expanding.",
     body: [
-      "I'm continuing to explore AI, software, research, and technology-driven solutions to real-world problems. I'm interested in thoughtful collaborations, ambitious ideas, and technical challenges worth taking on.",
-      "If you're working on something meaningful, let's talk.",
+      "I'm continuing to develop my technical skills, contribute to research, and take on new challenges. There is still more to learn, build, and discover.",
     ],
   },
 } satisfies Record<string, Chapter>;
 
-/** Three short principles shown in Chapter One. Values, not claims. */
+/** Three working principles shown in Chapter One. */
 export const principles = [
   {
-    label: "Start with why",
-    title: "Questions before code.",
-    body: "A social-science starting point taught me to ask who a system serves and why it matters before deciding how to build it.",
+    label: "Understand the context",
+    title: "Start with the problem.",
+    body: "Identify who needs a solution, what stands in their way, and what a better outcome would look like.",
   },
   {
-    label: "Build to learn",
-    title: "Prototypes over promises.",
-    body: "An idea becomes clearer once it can be tested. I would rather build a small working version than describe a perfect one.",
+    label: "Build to test",
+    title: "Make ideas tangible.",
+    body: "Develop a working version early enough to challenge assumptions and reveal what needs to change.",
   },
   {
-    label: "Improve in public",
-    title: "Evidence over adjectives.",
-    body: "Competitions, research, and feedback are where assumptions get checked. Each result feeds the next iteration.",
+    label: "Learn from the result",
+    title: "Let evidence guide the next step.",
+    body: "Use testing, feedback, and outcomes to decide what to improve, refine, or rethink.",
   },
 ];
+
+/** Copy for the project carousel in Chapter Two. */
+export const projectsCopy = {
+  title: "Selected work",
+  intro: "Projects across different disciplines, connected by a focus on practical problem-solving.",
+  helper: "Swipe, scroll, or use the arrows. Open any card to explore the case study.",
+  cta: "View all projects",
+};
+
+export const researchCopy = {
+  published: "Published & presented",
+  ongoing: "Ongoing & unpublished work",
+  cta: "Explore the research archive",
+};
+
+export const leadershipCopy = {
+  current: "Current roles",
+  past: "Leadership",
+  speaking: "Speaking & knowledge sharing",
+  log: "Organisation log",
+  communities: "Communities I learn with",
+};
+
+export const achievementsCopy = {
+  featured: "Featured achievements",
+  log: "Full milestone log",
+  helper: "Browse achievements by year and recognition type.",
+};
 
 export const about = {
   headline: "The person behind the map.",
   body: [
-    "Hi, I'm Galih Aji Pangestu (GAPZ.), an Informatics student at UPN “Veteran” Jawa Timur interested in what happens when technical ideas meet real problems.",
-    "My work takes me across software, AI, research, and collaborative projects. I enjoy understanding a challenge, building a solution, testing assumptions, and improving the result.",
-    "I see this portfolio as a record of what I am learning, the things I have built, and the directions I am continuing to explore.",
+    "I'm Galih Aji Pangestu, an Informatics student at UPN “Veteran” Jawa Timur.",
+    "I work across technology, research, and collaborative initiatives. I value clear thinking, practical experimentation, and learning from the process of bringing an idea into reality.",
+    "This portfolio brings together the work, responsibilities, and milestones that have shaped my development so far.",
   ],
 };
 
 export const contact = {
   eyebrow: "Get in touch",
-  headline: "Have a question worth exploring?",
-  body: "I'm interested in meaningful technical challenges, ambitious ideas, research conversations, and collaborative projects. If you're building something worth exploring, let's talk.",
-  cta: "Let's build something",
+  headline: "Have something to build?",
+  body: "For project collaborations, research discussions, or professional opportunities, reach out through the channels below.",
+  cta: "Let's collaborate",
 };

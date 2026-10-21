@@ -3,7 +3,7 @@ import Link from "next/link";
 import { DraftNote } from "@/components/ui/DraftNote";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { groupResearch, research, researchStatusLabels } from "@/content/research";
-import { chapters } from "@/content/stories";
+import { chapters, researchCopy } from "@/content/stories";
 import type { ResearchEntry } from "@/types/portfolio";
 
 export function ResearchCard({ entry, headingLevel = "h4" }: { entry: ResearchEntry; headingLevel?: "h2" | "h3" | "h4" }) {
@@ -51,7 +51,7 @@ export function ResearchSection() {
         <SectionHeading chapter={{ ...c, number: "03" }} id="research-title" />
         {published.length > 0 && (
           <div className="mt-14">
-            <h3 className="label mb-4 text-slate">Published & presented</h3>
+            <h3 className="label mb-4 text-slate">{researchCopy.published}</h3>
             <ul className="grid gap-6 md:grid-cols-2">
               {published.map((r) => (
                 <li key={r.id}>
@@ -63,7 +63,7 @@ export function ResearchSection() {
         )}
         {ongoing.length > 0 && (
           <div className="mt-14">
-            <h3 className="label mb-4 text-slate">Ongoing & unpublished work</h3>
+            <h3 className="label mb-4 text-slate">{researchCopy.ongoing}</h3>
             <ul className="grid gap-6 md:grid-cols-2">
               {ongoing.map((r) => (
                 <li key={r.id}>
@@ -75,7 +75,7 @@ export function ResearchSection() {
         )}
         <p className="mt-10">
           <Link href="/research" className="btn btn-secondary">
-            Research archive <ArrowRight className="size-4" aria-hidden />
+            {researchCopy.cta} <ArrowRight className="size-4" aria-hidden />
           </Link>
         </p>
       </div>

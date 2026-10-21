@@ -30,6 +30,8 @@ export interface WorldSceneProps {
   /** False while the map is scrolled out of view: rendering pauses. */
   active: boolean;
   compactLabels: boolean;
+  /** Pins never rise above this many px from the canvas top (keeps them clear of the navbar). */
+  safeTop: number;
 }
 
 // Island extents in screen-space world units (measured from the layout).
@@ -159,12 +161,16 @@ export default function WorldScene(props: WorldSceneProps) {
     "Let's build something great! 🚀",
   ];
 
+  const { safeTop } = props;
   const place = useCallback((id: RegionId, x: number, y: number) => {
     const el = pins.current[id];
     if (!el) return;
-    el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) translate(-50%, calc(-100% - 14px))`;
+    // The pin sits above its anchor (height + 14px stem); clamp so its top stays below safeTop.
+    const minY = safeTop + el.offsetHeight + 14;
+    const clampedY = Math.max(y, minY);
+    el.style.transform = `translate3d(${x.toFixed(1)}px, ${clampedY.toFixed(1)}px, 0) translate(-50%, calc(-100% - 14px))`;
     el.style.opacity = "1";
-  }, []);
+  }, [safeTop]);
 
   const placeGreeting = useCallback((x: number, y: number) => {
     const el = greetingRef.current;

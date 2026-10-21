@@ -3,7 +3,7 @@ import Link from "next/link";
 import { DraftNote } from "@/components/ui/DraftNote";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { achievementCategoryLabels, achievements, achievementsByYear } from "@/content/achievements";
-import { chapters } from "@/content/stories";
+import { achievementsCopy, chapters } from "@/content/stories";
 import type { Achievement } from "@/types/portfolio";
 
 const icons = { competition: Trophy, scholarship: GraduationCap, programme: Medal, recognition: Award, delegation: Flag };
@@ -49,7 +49,8 @@ export function AchievementSection() {
       <div className="container-atlas relative">
         <SectionHeading chapter={c} tone="dark" id="achievements-title" />
 
-        <ul className="mt-14 grid gap-6 md:grid-cols-3">
+        <h3 className="label mb-5 mt-14 text-mustard">{achievementsCopy.featured}</h3>
+        <ul className="grid gap-6 md:grid-cols-3">
           {featured.map((a) => (
             <li key={a.id}>
               <FeaturedAchievement a={a} />
@@ -58,7 +59,10 @@ export function AchievementSection() {
         </ul>
 
         <div className="mt-16">
-          <h3 className="label mb-2 text-mustard">Full milestone log · {achievements.length} entries</h3>
+          <h3 className="label text-mustard">
+            {achievementsCopy.log} · {achievements.length}
+          </h3>
+          <p className="mt-2 text-sm text-cream/70">{achievementsCopy.helper}</p>
           {achievementsByYear().map(([year, items]) => (
             <section key={year} aria-labelledby={`ach-${year}`} className="mt-8">
               <h4 id={`ach-${year}`} className="flex items-center gap-3 font-display text-2xl font-bold text-cream">

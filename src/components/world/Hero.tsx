@@ -20,10 +20,15 @@ function ProfileCard() {
           {siteConfig.name}
         </p>
         <p className="text-sm text-ink-soft">{siteConfig.tagline}</p>
-        <p className="mt-1 flex items-center gap-1.5 text-xs text-slate">
-          <span className="inline-block size-2 rounded-full bg-coral" aria-hidden />
-          Informatics · {siteConfig.institution}
-        </p>
+        {siteConfig.availability && (
+          <p className="mt-1 flex items-center gap-1.5 text-xs font-semibold text-ink-soft">
+            <span className="relative flex size-2" aria-hidden>
+              <span className="absolute inline-flex size-full rounded-full bg-green opacity-60 motion-safe:animate-ping" />
+              <span className="relative inline-flex size-2 rounded-full bg-green" />
+            </span>
+            {siteConfig.availability}
+          </p>
+        )}
       </div>
     </div>
   );

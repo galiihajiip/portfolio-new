@@ -19,7 +19,11 @@ export const siteConfig = {
   /** Short professional positioning used in the hero and metadata. */
   positioning:
     "Informatics student and emerging technology builder exploring AI, software engineering, research, data, and product innovation.",
-  tagline: "Informatics · AI · Software · Research",
+  tagline: "A Man with A Mission",
+  /** Descriptor line in the footer. */
+  footerLine: "Informatics · AI · Software · Research",
+  /** Status shown with a green light on the hero profile card. Set to null to hide it. */
+  availability: "Open to Work" as string | null,
   institution: "UPN “Veteran” Jawa Timur",
   location: "Surabaya, Indonesia",
 
@@ -63,10 +67,10 @@ export const siteConfig = {
   hero: {
     eyebrow: "The Builder's Atlas · Galih Aji Pangestu",
     headline: ["I build things", "to see how far", "an idea can go."],
-    copy: "Curiosity led me into Informatics. Today, I explore AI, software, research, and product development by turning questions into things that can be tested, improved, and used.",
+    copy: "A portfolio of projects, research, and collaborations from my journey through technology.",
     primaryCta: { label: "Explore my work", href: "#projects" },
     secondaryCta: { label: "Let's collaborate", href: "#contact" },
-    microcopy: "Choose a region on the map or scroll down to follow the story.",
+    microcopy: "Choose a region on the map or scroll to explore.",
   },
 
   features: {
